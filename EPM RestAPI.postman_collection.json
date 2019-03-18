@@ -1,0 +1,1407 @@
+{
+	"info": {
+		"_postman_id": "4e0397d2-a0b4-4f2a-a498-97d3d0fd98a8",
+		"name": "EPM RestAPI",
+		"description": "<dl>\n<div class=\"mtp-wrapper\">\n<p class=\"mtp-heading\">In this topic:</p>\n<ul class=\"mtp-items\">\n<li>SDK Supported Platforms</li>\n<li>Using the EPM&nbsp;Web Services SDK</li>\n<li>Return Codes</li>\n<li>API Versioning</li>\n<li>API Limitations</li>\n</ul>\n</div>\n<p>The main purpose of the EPM&nbsp;Web Services is to automate tasks that are usually performed manually using the UI.</p>\n<h2 id=\"h2-item-0\">SDK Supported Platforms</h2>\n<p>The EPM&nbsp;Web Services SDK is a RESTful API that can be invoked by any RESTful client for various programming and scripting environments, including Java, C#, Perl, PHP, Python and Ruby.</p>\n<h2 id=\"h2-item-1\">Using the EPM&nbsp;Web Services SDK</h2>\n<p>The EPM&nbsp;Web Services SDK enables you to perform activities on EPM&nbsp;objects via a REST Web Service interface. Each EPM&nbsp;object has its own URL path in the EPM&nbsp;website that can be accessed using the relevant HTTP/S request verb.</p>\n<table class=\"TableStyle-AdmonNote\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-AdmonNote-Column-Icon\" /><col class=\"TableStyle-AdmonNote-Column-Text\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-AdmonNote-Body-Body1\">\n<td class=\"TableStyle-AdmonNote-BodyB-Icon-Body1\">&nbsp;</td>\n<td class=\"TableStyle-AdmonNote-BodyA-Text-Body1\">\n<p class=\"TableText\">Although you can use HTTP requests, for security reasons it is recommended to use HTTPS.</p>\n<p class=\"TableText\">If you use the APIs only to retrieve data, for security reasons it is recommended to create a user with read-only permissions and log in with this user to run the APIs.</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-2\">Return Codes</h2>\n<p>The following table lists all the return codes that are returned from the REST Web Services API.</p>\n<table class=\"TableStyle-Standard\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Standard-Column-Column1\" /><col class=\"TableStyle-Standard-Column-Column1\" /><col class=\"TableStyle-Standard-Column-Column1\" /></colgroup>\n<thead>\n<tr class=\"TableStyle-Standard-Head-Header1\">\n<th class=\"TableStyle-Standard-HeadE-Column1-Header1\">\n<p>Return Code</p>\n</th>\n<th class=\"TableStyle-Standard-HeadE-Column1-Header1\">\n<p>Code Number</p>\n</th>\n<th class=\"TableStyle-Standard-HeadD-Column1-Header1\">\n<p>Description</p>\n</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"TableStyle-Standard-Body-Body1\">\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p>Success</p>\n</td>\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p>200</p>\n</td>\n<td class=\"TableStyle-Standard-BodyD-Column1-Body1\">\n<p class=\"TableText\">The request succeeded. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request, the response will contain an entity describing or containing the result of the action.</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Standard-Body-Body1\">\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p>Created</p>\n</td>\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p>201</p>\n</td>\n<td class=\"TableStyle-Standard-BodyD-Column1-Body1\">\n<p class=\"TableText\">The request was fulfilled and resulted in a new resource being created.</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Standard-Body-Body1\">\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p class=\"TableText\">Accepted</p>\n</td>\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p class=\"TableText\">202</p>\n</td>\n<td class=\"TableStyle-Standard-BodyD-Column1-Body1\">\n<p>The request has been accepted for processing, but the processing has not been completed.</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Standard-Body-Body1\">\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p class=\"TableText\">No Content</p>\n</td>\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p class=\"TableText\">204</p>\n</td>\n<td class=\"TableStyle-Standard-BodyD-Column1-Body1\">\n<p>The server successfully processed the request and is not returning any content (no response body). This code is typically returned by DELETE requests.</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Standard-Body-Body1\">\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p>Bad request</p>\n</td>\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p>400</p>\n</td>\n<td class=\"TableStyle-Standard-BodyD-Column1-Body1\">\n<p class=\"TableText\">The request could not be understood by the server due to incorrect syntax.</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Standard-Body-Body1\">\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p>Unauthorized</p>\n</td>\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p>401</p>\n</td>\n<td class=\"TableStyle-Standard-BodyD-Column1-Body1\">\n<ul>\n<li value=\"1\">The request requires user authentication.</li>\n<li value=\"2\">Your session has expired and your user has been disconnected</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Standard-Body-Body1\">\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p>Forbidden</p>\n</td>\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p>403</p>\n</td>\n<td class=\"TableStyle-Standard-BodyD-Column1-Body1\">\n<ul>\n<li value=\"1\">The request was valid, but the server is refusing action. The user might not have the necessary permissions for the action.</li>\n<li value=\"2\">The request was valid, but the usage limit according to the license was reached.</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Standard-Body-Body1\">\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p>Not Found</p>\n</td>\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p>404</p>\n</td>\n<td class=\"TableStyle-Standard-BodyD-Column1-Body1\">\n<p class=\"TableText\">The requested resource could not be found, or the user does not have permissions for this resource.</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Standard-Body-Body1\">\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p class=\"TableText\">Method Not Allowed</p>\n</td>\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p class=\"TableText\">405</p>\n</td>\n<td class=\"TableStyle-Standard-BodyD-Column1-Body1\">\n<p>A request method is not supported for the requested resource.</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Standard-Body-Body1\">\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p class=\"TableText\">Request Timeout</p>\n</td>\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p class=\"TableText\">408</p>\n</td>\n<td class=\"TableStyle-Standard-BodyD-Column1-Body1\">\n<p class=\"TableText\">The request was received by the server, but there was a timeout reaching one of the next components.</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Standard-Body-Body1\">\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p>Conflict</p>\n</td>\n<td class=\"TableStyle-Standard-BodyE-Column1-Body1\">\n<p>409</p>\n</td>\n<td class=\"TableStyle-Standard-BodyD-Column1-Body1\">\n<p class=\"TableText\">The request could not be completed due to a conflict with the current state of the resource.</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Standard-Body-Body1\">\n<td class=\"TableStyle-Standard-BodyB-Column1-Body1\">\n<p>Internal Server Error</p>\n</td>\n<td class=\"TableStyle-Standard-BodyB-Column1-Body1\">\n<p>500</p>\n</td>\n<td class=\"TableStyle-Standard-BodyA-Column1-Body1\">\n<p class=\"TableText\">The server encountered an unexpected condition which prevented it from fulfilling the request.</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h1>API&nbsp;Versioning</h1>\n<p>This topic explains how to specify which REST API version you intend to implement.</p>\n<p class=\"TableText\">By default, all called REST&nbsp;APIs are the latest version. You can manually change the version of the selected API by specifying the version to implement in the URL.</p>\n<table class=\"TableStyle-AdmonExample\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-AdmonExample-Column-Icon\" /><col class=\"TableStyle-AdmonExample-Column-Text\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-AdmonExample-Body-Body1\">\n<td class=\"TableStyle-AdmonExample-BodyB-Icon-Body1\">&nbsp;</td>\n<td class=\"TableStyle-AdmonExample-BodyA-Text-Body1\">\n<p class=\"TableText\">https://&lt;EPM_Server&gt;/EPM/API/<strong>10.7.0.1</strong>/Sets/&lt;setId&gt;/Events/&lt;Category&gt;</p>\n</td>\n</tr>\n</tbody>\n</table>\n<p class=\"Spacer\">&nbsp;</p>\n<table class=\"TableStyle-AdmonTip\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-AdmonTip-Column-Icon\" /><col class=\"TableStyle-AdmonTip-Column-Text\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-AdmonTip-Body-Body1\">\n<td class=\"TableStyle-AdmonTip-BodyB-Icon-Body1\">\n<p class=\"TableText\">&nbsp;</p>\n</td>\n<td class=\"TableStyle-AdmonTip-BodyA-Text-Body1\">\n<p class=\"TableText\">Best practice: We recommend not specifying the version number in the REST&nbsp;API&nbsp;URL, which will run the latest version of the API. Review the EPM Release Notes to determine which APIs have changed each release.</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h1>API&nbsp;Limitations</h1>\n<div class=\"mtp-wrapper\">\n<p class=\"mtp-heading\">In this topic:</p>\n<ul class=\"mtp-items\">\n<li>Limit the API&nbsp;calls in a set period of time</li>\n<li>Limit the concurrent login sessions<br /><br /></li>\n</ul>\n</div>\n<h2 id=\"h2-item-0\">Limit the API&nbsp;calls in a set period of time</h2>\n<p>The&nbsp;<strong>Maximum API calls</strong>&nbsp;Server Configuration parameter limits the number of API&nbsp;calls a user can make in the&nbsp;<strong>API call time period (Minutes)</strong>.</p>\n<p>The&nbsp;<strong>API call time period (Minutes)</strong>&nbsp;Server Configuration parameter defines the time period when no more than the&nbsp;<strong>Maximum API calls</strong>&nbsp;are allowed.</p>\n<p>For details, refer to&nbsp;Set Advanced Server Configurations. These parameters can be configured by on-premise customers.</p>\n<h2 id=\"h2-item-1\">Limit the concurrent login sessions</h2>\n<p>Only one login per minute per user is allowed using the API.</p>\n</dl>",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get EPM Version",
+			"item": [
+				{
+					"name": "OnPrem Server example",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{Address}}/EPM/api/server/version",
+							"protocol": "https",
+							"host": [
+								"{{Address}}"
+							],
+							"path": [
+								"EPM",
+								"api",
+								"server",
+								"version"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OnPrem Server example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://epmsrv.cyberarkdemo.com/EPM/api/server/version",
+									"protocol": "https",
+									"host": [
+										"epmsrv",
+										"cyberarkdemo",
+										"com"
+									],
+									"path": [
+										"EPM",
+										"api",
+										"server",
+										"version"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-UA-Compatible",
+									"value": "IE=edge"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2019 15:39:12 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "24"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Version\": \"10.8.0.833\"\n}"
+						}
+					]
+				},
+				{
+					"name": "SaaS Server Version example",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{DispatcherAddress}}/EPM/api/server/version",
+							"protocol": "https",
+							"host": [
+								"{{DispatcherAddress}}"
+							],
+							"path": [
+								"EPM",
+								"api",
+								"server",
+								"version"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SaaS Server Version example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://epm.cyberark.com/EPM/api/server/version",
+									"protocol": "https",
+									"host": [
+										"epm",
+										"cyberark",
+										"com"
+									],
+									"path": [
+										"EPM",
+										"api",
+										"server",
+										"version"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-UA-Compatible",
+									"value": "IE=edge"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2019 15:50:54 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "24"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Version\": \"10.8.0.833\"\n}"
+						}
+					]
+				}
+			],
+			"description": "<dl>\n<div>\n<p>In this topic:</p>\n<ul>\n<li>URL</li>\n<li>Resource information</li>\n<li>URL parameters</li>\n<li>Output</li>\n</ul>\n</div>\n<p>This method enables the user to retrieve the EPM version.</p>\n<h2>URL</h2>\n<p>Make sure there are no spaces in the URL.</p>\n<table cellspacing=\"0\"><colgroup><col /><col /></colgroup>\n<tbody>\n<tr>\n<td>\n<p>https://&lt;EPM_Server&gt;/EPM/API/&lt;Version&gt;/Server/Version</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2>Resource information</h2>\n<table cellspacing=\"0\"><colgroup><col /><col /></colgroup>\n<tbody>\n<tr>\n<td>\n<p>HTTP&nbsp;method</p>\n</td>\n<td>\n<p>GET</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2>URL parameters</h2>\n<table cellspacing=\"0\"><colgroup><col /><col /><col /><col /><col /></colgroup>\n<tbody>\n<tr data-mc-pattern=\"1\">\n<td>\n<p>Parameter</p>\n</td>\n<td>\n<p>Type</p>\n</td>\n<td>\n<p>Description</p>\n</td>\n<td>\n<p>Values</p>\n</td>\n<td>\n<p>Mandatory</p>\n</td>\n</tr>\n<tr data-mc-pattern=\"4\">\n<td>\n<p>EPM_Server</p>\n</td>\n<td>\n<p>String</p>\n</td>\n<td>\n<p>EPM&nbsp;Server</p>\n</td>\n<td>\n<p>For SaaS users - EPM dispatcher server name</p>\n<p>For on-premise users - EPM server name</p>\n</td>\n<td>\n<p>Yes</p>\n</td>\n</tr>\n<tr data-mc-pattern=\"4\">\n<td>\n<p>Version</p>\n</td>\n<td>\n<p>String</p>\n</td>\n<td>\n<p>API&nbsp;version</p>\n</td>\n<td>\n<p>Default value - Latest version</p>\n<p>Format is x.x.x.x (for example, 10.7.0.1)</p>\n</td>\n<td>\n<p>No</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2>Output</h2>\n<table cellspacing=\"0\"><colgroup><col /><col /><col /></colgroup>\n<tbody>\n<tr data-mc-pattern=\"1\">\n<td>\n<p>Parameter</p>\n</td>\n<td>\n<p>Type</p>\n</td>\n<td>\n<p>Description</p>\n</td>\n</tr>\n<tr data-mc-pattern=\"4\">\n<td>\n<p>Version</p>\n</td>\n<td>\n<p>String</p>\n</td>\n<td>\n<p>The EPM&nbsp;version</p>\n</td>\n</tr>\n</tbody>\n</table>\n<table cellspacing=\"0\"><colgroup><col /><col /></colgroup>\n<tbody>\n<tr>\n<td>{<br />\"Version\": \"string\"&nbsp;<br />}</td>\n</tr>\n</tbody>\n</table>\n</dl>",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "281b7472-6127-473b-bae1-1b325223d75a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9cd15d5-3f27-4645-a546-f322d19b4d4f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Login (EPM and Windows Authentication) ",
+			"item": [
+				{
+					"name": "Windows Authentication example",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "97876e54-190d-48cc-a139-5ce1f9f91843",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "ntlm",
+							"ntlm": [
+								{
+									"key": "password",
+									"value": "ab1234",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{ADUser}}",
+									"type": "string"
+								},
+								{
+									"key": "domain",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ApplicationID\": \"Irrelevant\"\r\n}"
+						},
+						"url": {
+							"raw": "https://{{Address}}/EPM/API/Auth/Windows/Logon",
+							"protocol": "https",
+							"host": [
+								"{{Address}}"
+							],
+							"path": [
+								"EPM",
+								"API",
+								"Auth",
+								"Windows",
+								"Logon"
+							]
+						},
+						"description": "<dl>\r\n<h1>Windows authentication<a name=\"aanchor218\"></a></h1>\r\n<div class=\"mtp-wrapper\">\r\n<p class=\"mtp-heading\">In this topic:</p>\r\n<ul>\r\n<li>URL</li>\r\n<li>Resource information</li>\r\n<li>URL parameters</li>\r\n<li>Header parameter</li>\r\n<li>Body parameter</li>\r\n<li>Output</li>\r\n</ul>\r\n</div>\r\n<p class=\"keepWithNext\">This method authenticates a user to EPM by Windows authentication and returns a token that can be used in subsequent web services calls.</p>\r\n<p>After the configured timeout expires, users have to log on again using their username and password.</p>\r\n<h2 id=\"h2-item-0\">URL</h2>\r\n<p class=\"TableText\">Make sure there are no spaces in the URL.</p>\r\n<table class=\"TableStyle-AdmonCode\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-AdmonCode-Column-Icon\" /><col class=\"TableStyle-AdmonCode-Column-Text\" /></colgroup>\r\n<tbody>\r\n<tr class=\"TableStyle-AdmonCode-Body-Body1\">\r\n<td class=\"TableStyle-AdmonCode-BodyB-Icon-Body1\">\r\n<p class=\"TableText\">&nbsp;</p>\r\n</td>\r\n<td class=\"TableStyle-AdmonCode-BodyA-Text-Body1\">\r\n<p class=\"TableText\">https://&lt;EPM_Server&gt;/EPM/API/&lt;Version&gt;/Auth/Windows/Logon</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<h2 id=\"h2-item-1\">Resource information</h2>\r\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\r\n<tbody>\r\n<tr class=\"TableStyle-Rows-Body-Alternate\">\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Alternate\">\r\n<p class=\"TableText\">HTTP&nbsp;method</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyA-Column1-Alternate\">\r\n<p class=\"TableText\">POST</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<h2 id=\"h2-item-2\">URL parameters</h2>\r\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\r\n<tbody>\r\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Parameter</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p>Type</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Description</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Values</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\r\n<p class=\"TableText\">Mandatory</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">EPM_Server</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">EPM&nbsp;Server</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">For SaaS users - EPM dispatcher server name</p>\r\n<p>For on-premise users - EPM server name</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<p class=\"TableText\">Yes</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">Version</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">API&nbsp;version</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">Default value - Latest version</p>\r\n<p class=\"TableText\">Format is x.x.x.x (for example, 10.7.0.1)</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\r\n<p class=\"TableText\">No</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<h2 id=\"h2-item-3\">Header parameter</h2>\r\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\r\n<tbody>\r\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Parameter</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p>Type</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Description</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Values</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\r\n<p class=\"TableText\">Mandatory</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">Content-Type</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">Content type</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">application/json</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\r\n<p class=\"TableText\">Yes</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<h2 id=\"h2-item-4\">Body parameter</h2>\r\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\r\n<tbody>\r\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Parameter</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p>Type</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Description</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\r\n<p class=\"TableText\">Mandatory</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">Application ID</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">Source application ID, to distinguish between REST API calls from EPM and REST&nbsp;API&nbsp;calls from another application</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\r\n<p class=\"TableText\">Yes</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p class=\"Spacer\">&nbsp;</p>\r\n<table class=\"TableStyle-AdmonCode\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-AdmonCode-Column-Icon\" /><col class=\"TableStyle-AdmonCode-Column-Text\" /></colgroup>\r\n<tbody>\r\n<tr class=\"TableStyle-AdmonCode-Body-Body1\">\r\n<td class=\"TableStyle-AdmonCode-BodyB-Icon-Body1\">&nbsp;</td>\r\n<td class=\"TableStyle-AdmonCode-BodyA-Text-Body1\">{<br />\"ApplicationID\": \"string\"&nbsp;<br />}</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<h2 id=\"h2-item-5\">Output</h2>\r\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\r\n<tbody>\r\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Parameter</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p>Type</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\r\n<p class=\"TableText\">Description</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">EPMAuthenticationResult</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\r\n<p class=\"TableText\">Session token that identifies the session, encoded in BASE 64</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p class=\"Spacer\">&nbsp;</p>\r\n<table class=\"TableStyle-AdmonCode\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-AdmonCode-Column-Icon\" /><col class=\"TableStyle-AdmonCode-Column-Text\" /></colgroup>\r\n<tbody>\r\n<tr class=\"TableStyle-AdmonCode-Body-Body1\">\r\n<td class=\"TableStyle-AdmonCode-BodyB-Icon-Body1\">&nbsp;</td>\r\n<td class=\"TableStyle-AdmonCode-BodyA-Text-Body1\">{<br />\"EPMAuthenticationResult\": \"string\"&nbsp;<br />}</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n</dl>"
+					},
+					"response": [
+						{
+							"name": "Windows Authentication example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ApplicationID\": \"Irrelevant\"\r\n}"
+								},
+								"url": {
+									"raw": "https://epmserver.cyberarkdemo.com/EPM/API/Auth/Windows/Logon",
+									"protocol": "https",
+									"host": [
+										"epmserver",
+										"cyberarkdemo",
+										"com"
+									],
+									"path": [
+										"EPM",
+										"API",
+										"Auth",
+										"Windows",
+										"Logon"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "EPM Authentication example",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b853e10-ee5b-404a-a811-59dd41eeb45b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Username\": \"{{User}}\",\r\n  \"Password\": \"{{Pass}}\",\r\n  \"ApplicationID\": \"Irrelevant\"\r\n}"
+						},
+						"url": {
+							"raw": "https://{{Address}}/EPM/API/Auth/EPM/Logon",
+							"protocol": "https",
+							"host": [
+								"{{Address}}"
+							],
+							"path": [
+								"EPM",
+								"API",
+								"Auth",
+								"EPM",
+								"Logon"
+							]
+						},
+						"description": "<dl>\n<h1>EPM&nbsp;authentication<a name=\"aanchor49\"></a></h1>\n<div class=\"mtp-wrapper\">\n<p class=\"mtp-heading\">In this topic:</p>\n<ul>\n<li class=\"mtp-heading\">URL</li>\n<li class=\"mtp-heading\">Resource information</li>\n<li class=\"mtp-heading\">URL parameters</li>\n<li class=\"mtp-heading\">Header parameter</li>\n<li class=\"mtp-heading\">Body parameters</li>\n<li class=\"mtp-heading\">Output</li>\n</ul>\n<p>&nbsp;</p>\n</div>\n<p class=\"keepWithNext\">This method authenticates a user to EPM using username and password and returns a token that can be used in subsequent Rest API calls.</p>\n<p>After the configured timeout expires, users have to log on again using their username and password.</p>\n<p>The session timeout for all APIs is part of the session token and is defined by the&nbsp;<strong>Timeout for inactive session</strong>&nbsp;Server Configuration parameter.</p>\n<h2 id=\"h2-item-0\">URL</h2>\n<p class=\"TableText\">Make sure there are no spaces in the URL.</p>\n<table class=\"TableStyle-AdmonCode\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-AdmonCode-Column-Icon\" /><col class=\"TableStyle-AdmonCode-Column-Text\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-AdmonCode-Body-Body1\">\n<td class=\"TableStyle-AdmonCode-BodyB-Icon-Body1\">\n<p class=\"TableText\">&nbsp;</p>\n</td>\n<td class=\"TableStyle-AdmonCode-BodyA-Text-Body1\">\n<p class=\"TableText\">https://&lt;EPM_Server&gt;/EPM/API/&lt;Version&gt;/Auth/EPM/Logon</p>\n</td>\n</tr>\n</tbody>\n</dl>\n</table>\n<h2 id=\"h2-item-1\">Resource information</h2>"
+					},
+					"response": [
+						{
+							"name": "EPM Authentication example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"Username\": \"vfadmin\",\r\n  \"Password\": \"Cyberark1\",\r\n  \"ApplicationID\": \"Irrelevant\"\r\n}"
+								},
+								"url": {
+									"raw": "https://epmsvr.cyberarkdemo.com/EPM/API/Auth/EPM/Logon",
+									"protocol": "https",
+									"host": [
+										"epmsvr",
+										"cyberarkdemo",
+										"com"
+									],
+									"path": [
+										"EPM",
+										"API",
+										"Auth",
+										"EPM",
+										"Logon"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-UA-Compatible",
+									"value": "IE=edge"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2019 15:52:34 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1826"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"IsPasswordExpired\": false,\n    \"EPMAuthenticationResult\": \"cSaxamO4cLjD0bI4Wf1vmtnDae8ERX2iMfmrHrwkI4UZtRgTCHj7MnnykkWR52pkf3IUyxRC0WX732pSP5mRrkT%2fne0%2bUltQaMJwzxv%2bp8ECYfTfJvMc5755ytnE4T%2fc3Esqgm1rG5dQqHAyp1m1Hrcr9aciqnh1kSc%2b9FsUcZeGD7VK6k2tOcxhXXgAyd7gPauBEF89%2fz%2fInRLfmMyIxLNDPF5PXII4AL8dm37WNA5uQPFu5JqHsLW7bM%2fjS3jqw1rcqo8DODR4ns2nWtZ%2bQGQYLM%2fDxXeMsnPUPywBQ1KexIIpYAWceVi3NOdc%2b1Y4RdpiwNoTGH2dRQ2vylkVID%2bfSW470hzGs9BD4BpiSBjLShqQurPU0vKLMZEH%2bgeC0a7P%2biGTNEo%2b6ffOYygKsREu9bJOUFfHQfikFIxqGwXhvYiD3BqA2AzDAZP5YmUr3WUiNqWhJ%2fCMsthdZ%2bNJI4%2f3hkahe0k3eooCq1edmRYr21q2PZ5lHv%2faPXNHBRtSEhFAt5JJnqwif0FUloNdWptAs0I0Qje3EsMcR5%2f3vN%2bVNU3oFiqyJ%2fWDwS2L9P6sy2%2bKPyzogjIgsLyPkOp4h%2bHPIZ8aTRBW2u45XYns2DFfZtFjoA9s%2fIhv0LVMy2WZgiOx58C0XTuu%2fkqpayMYKA0LCtuD%2bDQt2XrIgjT%2fzT%2fAc34DvA0JtMprYJkUWgQQQp4IcUdIsh0FRF82r2fzSNAU3t3oTAJPNXBaCW%2f7mOeYn%2fGkb2pJCVyw3G%2fohg4zx2T39%2f3b7UO4%2fWBw95zd2%2fiS1NwrArQ%2fp%2bRBfP36uxgcbkf2nw%2fuMop48viRZS2j3sUraLZ%2bBhzBsTnPmsU7uVk9rXiftzfJwpZpfVnG31Y6kEaVDFriPbWYn%2bgmqEJZRIPQXsKg3MXWHNjpQhu%2fju4EHuMIXOexm0RvpbnOxKD7b%2bE%2b0YdIZeaAYzhHRC6Cr45bTXCh1o44Fmuqddcqez2WpseM4YIzR6RGITgbuuthhiSljuH01B4nT1gcPf%2fYyZ%2fRRVuy2HN15EtPK8iJgwl%2fwfLAaohoVqigbcPegObuq1r933U%2fTvgrzJjUGtFseFjwx%2fRf2UCLKwdwiIaEhN2ECR0lonNDC3NYf4T0NTTntuHMONQhDFJmtu10VmNronfBO1%2biTeLfL0pQS3IryrGjTsVM%2bbN5qTOO5Cxdy%2fW9tVDr%2bK5OIi%2fQ7VV8QQMwPgui3MJyJn6bWmCtzm1lfzls8Zs6TVCo8OLCmUA9iWCHuMBJmQNZgpMaiPSpuEMNzMaGpaeo%2fLo6U87OqLy3bqIzrJZCSJl3OhSkmN1yEfbh9UMTmuBRW0CbomBW%2f%2fpAZ5fTEQ2TWi3n4VZYSnnEqEjCGUPlU92qH6JN4L3RyrWKZcppn0idNXlM0XrnbSzUpZS1yPrWamw%2by%2fx%2f%2fzmomRK%2f2nk0SBelJ462VFM2R3H%2f1WVZ1kdJGViMlT7twv207eWkfHIZVZeKuDF9%2b%2bEHlQFK62tkeIl%2bGm0QGDfCeU4ov1zprWQNziZFLum%2fdq%2bwo18Q0zZAyxk18MvWrYPy03ufwPeLZtWhxM4OMoF51wBUL2Bv6ztQGt9vJQ%2bd9IxGl5M2NBDmyxLO2VHLngSS%2fjVBuNzxVHTy\"\n}"
+						}
+					]
+				},
+				{
+					"name": "SaaS (EPM) Authentication example",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b853e10-ee5b-404a-a811-59dd41eeb45b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"Username\": \"{{User}}\",\r\n  \"Password\": \"{{Pass}}\",\r\n  \"ApplicationID\": \"Irrelevant\"\r\n}"
+						},
+						"url": {
+							"raw": "https://{{DispatcherAddress}}/EPM/API/Auth/EPM/Logon",
+							"protocol": "https",
+							"host": [
+								"{{DispatcherAddress}}"
+							],
+							"path": [
+								"EPM",
+								"API",
+								"Auth",
+								"EPM",
+								"Logon"
+							]
+						},
+						"description": "\n\n"
+					},
+					"response": [
+						{
+							"name": "SaaS (EPM) Authentication example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"Username\": \"chuck.mcallister@company.com\",\r\n  \"Password\": \"Cyberark1\",\r\n  \"ApplicationID\": \"Irrelevant\"\r\n}"
+								},
+								"url": {
+									"raw": "https://epm.cyberark.com/EPM/API/Auth/EPM/Logon",
+									"protocol": "https",
+									"host": [
+										"epm",
+										"cyberark",
+										"com"
+									],
+									"path": [
+										"EPM",
+										"API",
+										"Auth",
+										"EPM",
+										"Logon"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-UA-Compatible",
+									"value": "IE=edge"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2019 16:01:15 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1840"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"IsPasswordExpired\": false,\n    \"EPMAuthenticationResult\": \"lD54hK4oahzoy6fqtBjS9K2I7mKMig4x2IEv4%2b%2bnZuDHnHwxoWzG2yNCfQtAWAFPdvL99EiFhSCUt3T1kmVEl2peclbDaBlc19p%2bOTSKDFaw5eba7AboKgXWtJFUP7jonSiZFGoRWg8EBfTPAX69uyANn%2bTFngn8CNeD7468Rn7PfeizsW6vGegdBS4RY%2b%2fEkjAHMHOV4C%2bMSNxHRsDgBbNVGdFNM2TBjqpasUOHGiX4rEB%2f43xJnM0SaRs8Vjb%2fOlVu4MIKu4zs8D4SP2wnnqxTftz%2bGu3kyXDJGzFT%2fA7nx26xGdthm%2fLbqb3FwUjD48o5wB2Vpmk3EgvQoA2c7nO%2bcMwhGtFf3FdMIgZvJJ8Niv0VLS3ybFf6BVsrxg6wNkqqFa5bSe%2fYPL4oCP8E4kf91xCRE%2be7pN8KhrGO9vUlPfuC%2fEsQWCxsvw3tnmCv%2bOHlfTWV4nMmRpDEXwbGejTdpbMsM2YOe3bP8dHAb2ZYPACVLHg35Lh80t8nxH7%2b01%2bgch76TG3lYVeSI2FzZIaoZm6hqCyM1erCMMth12lV0LoxdNw2X125gQAZb6yuVCNS0UtnY%2fGdkhyT46mW8eYQeqnH8sm%2fDD0Qqi2p3Ma3Bwilq7J8dPdX2b%2fXOu2JTGAm1qlZTdQ2Qs2fdIYKKJZb%2frOszOE%2fcR9TmQTOBS0gSC1TB81YpHnPrdT7ivXG%2b0qa9JnxT4oLBXKfcmAGIZvLr3nhfLnZOEDB1kekdBEumsiEhIMSSEJdP8S57Es3feZhu5iBrZsa8xHBxKxgLrjYxubEy6Iiq2vb8R4pJNGzKz6niRskiv1fVWchHyiWshFEezru9U3Xi9lrXSoj0tE0vf5KkRAA4Q4KS%2f29qL2q%2bd%2bCJ1DMBwqZcUSjmJAIBUi9XW3EMvlhbk9lxTYkcgJ4trphS9TLHiOFqGG4kc6WHnWb%2fjL4YEfVL2tFbnwI4FrxkU%2b9nnPiQ4h6eMnAnQWkuk8Pdl5V%2fjXy7X1dd6u9hNqDFCgRiIIenv%2fQLgTdYMCG1jjc6o0RgZw0BONPZ39O6FrI1qpR2UDj2q825jufZNWPXyBer0vRq5836yMqoBU43XuEPJH9IkR68LZJSoLfJ0fLX%2b0m885meWTulDh9YIguySw98RKPsX7e%2fUTseF3JP%2bA8uaKy9ajD8c%2fA05tSk2lZL0x%2bbmSDo%2f%2ffw11GZBhOcZEkrEkLnWUlZ1g2dnXnRZUz8IiSxLxxecMLeVhinsCVg0ropuVMe0%2b8FDqrFSfwh3KB5muJvthvY8OWLxXCNLwDIzFAwQRz%2bvmcgSMghD19jz%2bY%2fW%2bW1JYoaza0J%2fTtExfYiNHGRXcmZ8cX%2b19fWBfob0ahXAZ7P0Ky4MG0ObPw36R%2fNU6%2fmC9EtLMo8a6K9IPOA%2bTlQ%2b3ZFSFvSEfIo1eUk9yq3wHoicMyhWgbf6HtcVgMsLyYOTOceZkN%2faibDFNXnr1P%2f0ZJ4Ve0x6xI%2fvqtNUqbF3aXEPYc18Q%2fVLyRwqklSMzvDv%2bLbJP4BWkJivU8zMXT0MWgFEFq%2fnYprH2C7vaZRF%2fgltpepBrp4%2fDTkamuJ0UVe6gKeM3PzruLk0%2bcf2XUPwnNkqHbh8u4Z3glEZV0EXZlb8mb0tbXZEBEwA3Tav6N%2bd3ZalU0pyvjPHnsGY1tXpNu2wtN\"\n}"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0b13749e-d4e2-4db8-9452-5ace29032bea",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "388916b2-155b-4be7-b7e3-33fdcd948dc5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Get Sets list",
+			"item": [
+				{
+					"name": "Get Sets list example",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3c1c10f9-87ee-45a8-85ea-58bf10a59216",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "22fcd77a-6aa8-4b67-b501-f78928391839",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{Address}}/EPM/api/sets",
+							"protocol": "https",
+							"host": [
+								"{{Address}}"
+							],
+							"path": [
+								"EPM",
+								"api",
+								"sets"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Sets list example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "basic cSaxamO4cLjD0bI4Wf1vmtnDae8ERX2iMfmrHrwkI4UZtRgTCHj7MnnykkWR52pkf3IUyxRC0WX732pSP5mRrkT%2fne0%2bUltQaMJwzxv%2bp8ECYfTfJvMc5755ytnE4T%2fc3Esqgm1rG5dQqHAyp1m1Hrcr9aciqnh1kSc%2b9FsUcZeGD7VK6k2tOcxhXXgAyd7gPauBEF89%2fz%2fInRLfmMyIxLNDPF5PXII4AL8dm37WNA5uQPFu5JqHsLW7bM%2fjS3jqw1rcqo8DODR4ns2nWtZ%2bQGQYLM%2fDxXeMsnPUPywBQ1KexIIpYAWceVi3NOdc%2b1Y4RdpiwNoTGH1bfK60H4qmlkS6ki7l97IriwPhtFLwV9u2OfU80nVyOoBC%2bhXSu2YbZehPz%2f7kfRGV9MWt1zwnP%2fonoEhNTEC%2bKjcX%2fSFrlx%2bSskCV%2bVmUGXX%2fdr4Ve2ifER%2bmCpFcJXhXZ%2f6KADoud8r3S2frqK5PocIxRT5x3rPFsbFF%2f8a%2fEG1EicrRQIjfAGb4ACkqotlcMU4iLVi37NmVnBok1dBwYfZkI458IZn5YisXzG0OaIS0FFDp8boTwoxr9BPOmEVcRgxHe8ePnX4VscobH%2fUTpTjBzwbasJFPppP1wgCVbQF2wDRcYts71mZsoT7P5cwj6Sj5bz7sbEWJOsbXm7leh%2b%2fMSsPalG3c%2fuZQtkQV1dGISXrAiFq8immU4ZfsU2iHA6h%2b4yAE4I34un21KIS1aMxo9khlwoCx2rkTuHwqWzI5TJjIFIvZJKmPS3kPTQBIn5ZC0%2bKlxE1PO9E2LhnpMwP1R91tMsHSXYbbmyk5t8%2fomgvrdbPDxhEiNa6couJORWRWWi95M8izf2BYWP1ybhxxJfm122Rdf1a7GkSwRa9gBOIPlgYJWlwI6KZeJudJSMKlX%2b%2bYqbuwhClM0Ig1IDbJHl9RZA0TJJqsDnfZbNTLt2fxt0K7cb0894qPs47mmisDJTcZsdnRR7QPzxcxb%2bvC1zzPc%2fPrVYhzxnrRaG2J4Rt71%2bCrlpXtul8vgsIkW0V5BRSlIffBF3hkmlyMMIzz2aOKIEKJy5ySwnGQzfKrJ%2fNoB2nlRHtHb3ZBZGUPA%2fUPdkRsiK8%2bIzQqcPCN7ZlA8eSlTii1WNXNeZGGCMaxQEt3oR%2fUZSmIB76JsXhdvq4w5QJZG5PRJ9jHMcOEspVnemecWXYnkosmjl1OxqNPDaOR4a36FZw2PjghAWLl0lXmiRjmh0yeppeY6Hn8SZQ7PYWfdEl0UXiUrptyZHIRFg6k7sVcDd9bjOiFFF%2bctufuLgtbtTTs3oFMh2X0iw9qmmTj1bN3M%2beB1ERcXFCY71Q39WcJRixmD6c%2fNLJVpmY%2bIm6kSWKTKks%2bDjaJeWUWfdJl%2fuVrmBkpUYZvIcdhepl8hcULcLsnf8kpvyHU5xnY6%2bVa4Ykrg%2bqQb1S68fjqDxvbvRXk%2bR%2bODUBAulm2Uf2H1J3yWb4lKLqoRzDUXdWxgwRAAoTLeaPEiNawnE4aEqlLFn%2bhBKDKT1gL3hoAZlenXUmRT9pJo%2bFz20MDVt%2bDxHLrGp0thaMKNNmk0fQwx2EELu1UQENGHmXErtIvpJK2ynEyZWpkcdnDnYD7%2fbwDeyAKwhBz9y6ZM6iB"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://epmsvr.cyberarkdemo.com/EPM/api/sets",
+									"protocol": "https",
+									"host": [
+										"epmsvr",
+										"cyberarkdemo",
+										"com"
+									],
+									"path": [
+										"EPM",
+										"api",
+										"sets"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-UA-Compatible",
+									"value": "IE=edge"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2019 16:07:45 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "239"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"SetsCount\": 2,\n    \"Sets\": [\n        {\n            \"Id\": \"b4d81800-645d-4a9d-82eb-b9a3beaa7110\",\n            \"Name\": \"CyberArkDemo\",\n            \"Description\": \"CyberArkDemo\",\n            \"IsNPVDI\": false\n        },\n        {\n            \"Id\": \"522cb57f-57bb-46ee-9410-3f1c4cd1ecb7\",\n            \"Name\": \"CyberArk Test\",\n            \"Description\": \"\",\n            \"IsNPVDI\": false\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"description": "<dl>\n<div class=\"mtp-wrapper\">\n<p class=\"mtp-heading\">In this topic:</p>\n<ul>\n<li class=\"mtp-heading\">URL</li>\n<li class=\"mtp-heading\">Resource information</li>\n<li class=\"mtp-heading\">URL parameters</li>\n<li class=\"mtp-heading\">Header parameters</li>\n<li class=\"mtp-heading\">Output</li>\n</ul>\nThis method enables the user to retrieve the list of Sets.</div>\n<h2 id=\"h2-item-0\">URL</h2>\n<p class=\"TableText\">Make sure there are no spaces in the URL.</p>\n<table class=\"TableStyle-AdmonCode\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-AdmonCode-Column-Icon\" /><col class=\"TableStyle-AdmonCode-Column-Text\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-AdmonCode-Body-Body1\">\n<td class=\"TableStyle-AdmonCode-BodyB-Icon-Body1\">\n<p class=\"TableText\">&nbsp;</p>\n</td>\n<td class=\"TableStyle-AdmonCode-BodyA-Text-Body1\">\n<p class=\"TableText\">https://&lt;EPM_Server&gt;/EPM/API/&lt;Version&gt;/Sets</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-1\">Resource information</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Alternate\">\n<p class=\"TableText\">HTTP&nbsp;method</p>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Alternate\">\n<p class=\"TableText\">GET</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-2\">URL parameters</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Parameter</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p>Type</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Description</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Values</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\n<p class=\"TableText\">Mandatory</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">EPM_Server</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">EPM&nbsp;Server</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">EPM&nbsp;Server name</p>\n<p class=\"TableText\">(not dispatcher server name)</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Yes</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Version</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">API&nbsp;version</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Default value - Latest version</p>\n<p class=\"TableText\">Format is x.x.x.x (for example, 10.7.0.1)</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Offset</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number of sets to skip</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Default value - 0</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">Limit</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">Maximum number of sets to return</p>\n<p class=\"TableText\">(up to 1000)</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">Default value - 50</p>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-3\">Header parameters</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Parameter</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p>Type</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Description</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Values</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\n<p class=\"TableText\">Mandatory</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Authorization</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Token generated in the&nbsp;EPM&nbsp;authentication&nbsp;API</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>use&nbsp;<strong>basic &lt;Token&gt;</strong></p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Yes</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p>VFUser</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">Token generated in the&nbsp;Windows authentication&nbsp;API</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p>use&nbsp;<strong>&lt;Token&gt;</strong></p>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\n<p class=\"TableText\">Yes</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-4\">Output</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Parameter</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p>Type</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\n<p class=\"TableText\">Description</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">SetsCount</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Total number of sets</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\" colspan=\"3\">\n<p class=\"TableText\">Each Set returns the following information:</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">SetId</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>Set ID</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">SetName</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>Set name</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">SetDescription</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Set description</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">IsNPVDI</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">Boolean</p>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\n<p class=\"TableText\">Indicates whether the Set is an NPVDI Set</p>\n</td>\n</tr>\n</tbody>\n</table>\n<p class=\"Spacer\">&nbsp;</p>\n<table class=\"TableStyle-AdmonCode\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-AdmonCode-Column-Icon\" /><col class=\"TableStyle-AdmonCode-Column-Text\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-AdmonCode-Body-Body1\">\n<td class=\"TableStyle-AdmonCode-BodyB-Icon-Body1\">&nbsp;</td>\n<td class=\"TableStyle-AdmonCode-BodyA-Text-Body1\">{&nbsp;<br />&nbsp;&nbsp;\"SetsCount\": number,&nbsp;<br />&nbsp;&nbsp;\"Sets\": [&nbsp;<br />&nbsp;&nbsp;&nbsp;{&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"Id\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"Name\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"Description\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"IsNPVDI\": boolean&nbsp;<br />&nbsp;&nbsp;&nbsp;}&nbsp;<br />&nbsp;&nbsp;]&nbsp;<br />}</td>\n</tr>\n</tbody>\n</table>\n</dl>",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "66a2a86c-d396-411d-bd41-7bd247e9e7ef",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "bb3ac99d-18cc-45a4-a126-2a2f21099df0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Get aggregated events",
+			"item": [
+				{
+					"name": "Aggregated events example",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4c8bf05-b788-41e2-ab34-e0f5f609496b",
+								"exec": [
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{Address}}/EPM/API/Sets/{{SetID}}/Events/ApplicationEvents?EventType=ElevationRequest,Launch&Publisher=Piriform Ltd&DateFrom=2019-03-01T09:02:04.387&DateTo=2019-11-01T09:02:04.387&ApplicationType=Executable,Script,MSI,MSU,ActiveX,Com,Win8App,DLL",
+							"protocol": "https",
+							"host": [
+								"{{Address}}"
+							],
+							"path": [
+								"EPM",
+								"API",
+								"Sets",
+								"{{SetID}}",
+								"Events",
+								"ApplicationEvents"
+							],
+							"query": [
+								{
+									"key": "EventType",
+									"value": "ElevationRequest,Launch"
+								},
+								{
+									"key": "Publisher",
+									"value": "Piriform Ltd"
+								},
+								{
+									"key": "DateFrom",
+									"value": "2019-03-01T09:02:04.387"
+								},
+								{
+									"key": "DateTo",
+									"value": "2019-11-01T09:02:04.387"
+								},
+								{
+									"key": "Justification",
+									"value": "WithJustification",
+									"disabled": true
+								},
+								{
+									"key": "ApplicationType",
+									"value": "Executable,Script,MSI,MSU,ActiveX,Com,Win8App,DLL"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Aggregated events example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "basic cSaxamO4cLjD0bI4Wf1vmtnDae8ERX2iMfmrHrwkI4UZtRgTCHj7MnnykkWR52pkf3IUyxRC0WX732pSP5mRrkT%2fne0%2bUltQaMJwzxv%2bp8ECYfTfJvMc5755ytnE4T%2fc3Esqgm1rG5dQqHAyp1m1Hrcr9aciqnh1kSc%2b9FsUcZeGD7VK6k2tOcxhXXgAyd7gPauBEF89%2fz%2fInRLfmMyIxLNDPF5PXII4AL8dm37WNA5uQPFu5JqHsLW7bM%2fjS3jqw1rcqo8DODR4ns2nWtZ%2bQGQYLM%2fDxXeMsnPUPywBQ1KexIIpYAWceVi3NOdc%2b1Y4RdpiwNoTGH21VfMf%2fMYGPEPw1cPiGTohoGQBHXLahiDyRgKcjg5hBPOICx4nZZhl2PAgbagc%2bkzK7MpPVxBlIAn1%2feVU3cgDWMvNU5O3m749R0%2bHqP%2f02terH5kW%2b5ezhzDNF4FgzZ642j3ywd%2bCIyWMPfLlMCIvElQb9wZd7g6crMvXHpmMp4ZOix53Btrzcc81nolPG1uGTDXk8LWcaVub76FYveW4nom8R9KWT8DW89Bu4qfT02pns8jRn3x4MjUjtMOyfVMNON%2fVQEf0JIVTDVjLF5fIMPTs%2bu6%2brWVUJzTRokAJwcKdmio2kI9uRngpFNV51PPfOZa%2fzpqK0%2bEOPxmDm4ovXtiRJLPoSwHTrgIQjvVIK3EG2aEg1vlrJukxMj5A5oVmhK86GL1Z%2fOewPBOvJI2%2fHv4GEBK2IcA1rc%2b0%2fyIeGQC1ZFDDJn4lP6yaLDRTqItB%2fHaRKeylDFl1%2ff8X08LZrCOOYnk5HKM7umZf6VvaJLPUmoitpUYfV%2bIQZzixyuT9dYddqHz4quIQAjniGx%2fzXPQNmSZmPg45jrMGKHh2gtZBK0%2flLbI4jEdB%2fB4vsEKi45J6K1IaSwk%2bena7KTeAAipxrTjzs%2bfbg%2bVoVaJwMGXCrcZsWsJqEEWricQRqpxLpbrovq1JP3Z4P5w4oWIY74GoKX%2bpBW4qVIP0MkWnRa%2bEUGFRWBDdTgtHnLkn5vru4X1mzd3OyBw1H8nl0i1fh%2b2%2b0SYSBppAelYH3X8tSv14U%2bbspeeCeZdZehUqGjflBpjyf1B4MDFjNbdO50gIcz%2bI86NBa9bkWnTo%2fwexCLewt056bW%2bsp9fGo7UHiFHSRNAMMQTmeoTJVpfgOWOmOJblWktBeTQPKoLRI95RLi4%2ffJbXucpipgvp530mb%2f0V3106mkKIvDZH1yapfKU74RQGYgZMQJP6FU%2bjdAsNyv%2fjklIm%2fn7laV8NN3xEWITPSH7q67BUhuwwFW1uPxxbgcEx9quAxO38kx3LUnCnpQBsPBRYgKzbaOMc455kKWDIDpCU9gDLG16BPUELRNZHD5BJzumXRN4JD9xWbpysQmmXUeiIyQf84HV0YX%2fdYxLaNj0iqE9tBgniCi1odpfdQUAuma%2b%2blTitkkUYrKQIYFsJIUdv1wkj5sO%2b6Jp0Tp9PW3DNVZwhNwNlY0gXt%2fECMt3B8SVOXHvr1eU2%2fkZS0bnRzShhjyVWvLoWXjv%2f%2fzL%2bTQglPfPOFKhxepKe2qxr3PjPcVmOlP7olkAYvGh4CxtV0RChIoYifR11IXpje9WrL7v5YJQLgH8qnMyG95Fe"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://epmsvr.cyberarkdemo.com/EPM/API/Sets/b4d81800-645d-4a9d-82eb-b9a3beaa7110/Events/ApplicationEvents?EventType=ElevationRequest,Launch&Publisher=Piriform Ltd&DateFrom=2019-03-01T09:02:04.387&DateTo=2019-11-01T09:02:04.387&ApplicationType=Executable,Script,MSI,MSU,ActiveX,Com,Win8App,DLL",
+									"protocol": "https",
+									"host": [
+										"epmsvr",
+										"cyberarkdemo",
+										"com"
+									],
+									"path": [
+										"EPM",
+										"API",
+										"Sets",
+										"b4d81800-645d-4a9d-82eb-b9a3beaa7110",
+										"Events",
+										"ApplicationEvents"
+									],
+									"query": [
+										{
+											"key": "EventType",
+											"value": "ElevationRequest,Launch"
+										},
+										{
+											"key": "Publisher",
+											"value": "Piriform Ltd"
+										},
+										{
+											"key": "DateFrom",
+											"value": "2019-03-01T09:02:04.387"
+										},
+										{
+											"key": "DateTo",
+											"value": "2019-11-01T09:02:04.387"
+										},
+										{
+											"key": "Justification",
+											"value": "WithJustification",
+											"disabled": true
+										},
+										{
+											"key": "ApplicationType",
+											"value": "Executable,Script,MSI,MSU,ActiveX,Com,Win8App,DLL"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-UA-Compatible",
+									"value": "IE=edge"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2019 18:20:35 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1520"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Events\": [\n        {\n            \"TotalEvents\": 12,\n            \"FileQualifier\": \"-1017619164156729424\",\n            \"EventType\": \"ElevationRequest\",\n            \"EventName\": \"Defraggler Installer (dfsetup222.exe)\",\n            \"ApplicationType\": \"Executable\",\n            \"Hash\": \"SHA1##B0E0F327809A767D6B524E2FA325DD35B678AF44\",\n            \"Publisher\": \"Piriform Ltd\",\n            \"LastEventSourceType\": \"Internet\",\n            \"LastEventSourceName\": \"https://dl1.filehippo.com/494b5a35d6c549e28dcf7a4fe963453a/dfsetup222.exe?ttl=1546644722&token=f38dde7a6d6293912ffc44855a215ed3 (Google Chrome)\",\n            \"LastEventPreHistorySourceType\": \"Unknown\",\n            \"LastEventPreHistorySourceName\": \"\",\n            \"LastEventPackageName\": \"Defraggler Installer\",\n            \"LastEventDate\": \"2019-03-17T18:07:50.98\",\n            \"LastEventUserName\": \"cyberarkdemo\\\\john\",\n            \"LastEventComputer\": \"WIN10LAB\",\n            \"IsMalware\": false,\n            \"LastEventID\": \"112535\"\n        },\n        {\n            \"TotalEvents\": 4,\n            \"FileQualifier\": \"-182312789829762429\",\n            \"EventType\": \"Launch\",\n            \"EventName\": \"CCleaner (CCleaner64.exe)\",\n            \"ApplicationType\": \"Executable\",\n            \"Hash\": \"SHA1##32058D58FF3C46A441B3DEF950474FF8B6DECE57\",\n            \"Publisher\": \"Piriform Ltd\",\n            \"LastEventSourceType\": \"NetworkShare\",\n            \"LastEventSourceName\": \"\\\\\\\\10.0.0.1\\\\shared\\\\build\\\\CCleaner Professional Plus v5.25.0.5902 x86-x64 Setup\",\n            \"LastEventPreHistorySourceType\": \"NetworkShare\",\n            \"LastEventPreHistorySourceName\": \"\\\\\\\\10.0.0.1\\\\shared\\\\build\\\\CCleaner Professional Plus v5.25.0.5902 x86-x64 Setup\",\n            \"LastEventPackageName\": \"CCleaner Installer\",\n            \"LastEventDate\": \"2019-03-01T21:15:14.8366667\",\n            \"LastEventUserName\": \"cyberarkdemo\\\\mike\",\n            \"LastEventComputer\": \"CLIENT\",\n            \"IsMalware\": false,\n            \"LastEventID\": \"111589\"\n        }\n    ],\n    \"TotalCount\": 141,\n    \"FilteredCount\": 2\n}"
+						}
+					]
+				}
+			],
+			"description": "<dl>\n<div class=\"mtp-wrapper\">\n<p class=\"mtp-heading\">In this topic:</p>\n<ul class=\"mtp-items\">\n<li>URL</li>\n<li>Resource information</li>\n<li>URL parameters</li>\n<li>Header parameters</li>\n<li>Query parameters</li>\n<li>Event Type</li>\n<li>Output</li>\n</ul>\n<p>&nbsp;</p>\nThis method enables the user to retrieve aggregated events from EPM according to a predefined filter.</div>\n<h2 id=\"h2-item-0\">URL</h2>\n<p class=\"TableText\">Make sure there are no spaces in the URL.</p>\n<table class=\"TableStyle-AdmonCode\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-AdmonCode-Column-Icon\" /><col class=\"TableStyle-AdmonCode-Column-Text\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-AdmonCode-Body-Body1\">\n<td class=\"TableStyle-AdmonCode-BodyB-Icon-Body1\">\n<p class=\"TableText\">&nbsp;</p>\n</td>\n<td class=\"TableStyle-AdmonCode-BodyA-Text-Body1\">\n<p class=\"TableText\">https://&lt;EPM_Server&gt;/EPM/API/&lt;Version&gt;/Sets/&lt;setId&gt;/Events/&lt;Category&gt;</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-1\">Resource information</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Alternate\">\n<p class=\"TableText\">HTTP&nbsp;method</p>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Alternate\">\n<p class=\"TableText\">GET</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-2\">URL parameters</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Parameter</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p>Type</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Description</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Values</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\n<p class=\"TableText\">Mandatory</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">EPM_Server</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">EPM&nbsp;Server</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">EPM&nbsp;Server name</p>\n<p class=\"TableText\">(not dispatcher server name)</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Yes</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Version</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">API&nbsp;version</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Default value - Latest version</p>\n<p class=\"TableText\">Format is x.x.x.x (for example, 10.7.0.1)</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">SetID</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">ID of a set that the user has permission to view, generated in the&nbsp;Get Sets list&nbsp;API</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>&nbsp;</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Yes</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">Category</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">Event category</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<ul>\n<li value=\"1\">ApplicationEvents</li>\n<li value=\"2\">PolicyAudit</li>\n<li value=\"3\">ThreatDetection</li>\n</ul>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\n<p class=\"TableText\">Yes</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-3\">Header parameters</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Parameter</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p>Type</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Description</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Values</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\n<p class=\"TableText\">Mandatory</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Authorization</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Token generated in the&nbsp;EPM&nbsp;authentication&nbsp;API</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>use&nbsp;<strong>basic &lt;Token&gt;</strong></p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Yes</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p>VFUser</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">Token generated in the&nbsp;Windows authentication&nbsp;API</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p>use&nbsp;<strong>&lt;Token&gt;</strong></p>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\n<p class=\"TableText\">Yes</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-4\">Query parameters</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Parameter</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p>Type</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Description</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Values</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\n<p class=\"TableText\">Mandatory</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Offset</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number of events to skip</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Default value - 0</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Limit</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Maximum number of events to return (up to 100)</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>&nbsp;</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">EventType</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Event type</p>\n<p class=\"TableText\">Value with&nbsp;<strong>All</strong>&nbsp;or with a list of event types separated by commas</p>\n<p class=\"TableText\">For the list of event types, see the Event Type table</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>All</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Publisher</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Digital signature of the application that triggered the event (if applicable)</p>\n<p>Wildcards and&nbsp;<strong>unsigned</strong> are supported</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Wildcards:</p>\n<ul>\n<li value=\"1\">\"xxx xxx\" - filters the exact value between the quotes</li>\n<li value=\"2\">xxx xxx - filters anything that contains the string</li>\n<li value=\"3\">*xxx xxx* - filters anything that contains the string between the *</li>\n<li value=\"4\">xxx* - filters all strings that start with the value before the *</li>\n<li value=\"5\">*xxx - filters all strings that end with the value after the *</li>\n</ul>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">DateFrom</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Date</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Only show events since the given date</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>ISO-8601 to format dates and UTC time zone - YYYY-MM-DDThh:mm:ssZ</p>\n<p>If&nbsp;<strong>DateFrom</strong>&nbsp;and&nbsp;<strong>DateTo</strong>&nbsp;are not valued, only events from the last day are returned</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">DateTo</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Date</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Only show events until the given date</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>ISO-8601 to format dates and UTC time zone - YYYY-MM-DDThh:mm:ssZ</p>\n<p>If&nbsp;<strong>DateFrom</strong>&nbsp;and&nbsp;<strong>DateTo</strong>&nbsp;are not valued, only events from the last day are returned</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Justification</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Determines if the event has justification details</p>\n<p>Not relevant for&nbsp;<strong>ThreatDetection</strong></p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Default value: All</p>\n<p class=\"TableText\">Valid values:&nbsp;<strong>All</strong>,&nbsp;<strong>WithJustification</strong></p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">ApplicationType</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Type of application that triggers the event</p>\n<p>Value with&nbsp;<strong>All</strong>&nbsp;or with a list of application types separated by commas:</p>\n<p>Not relevant for&nbsp;<strong>ThreatDetection</strong></p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Default value: All</p>\n<p class=\"TableText\">Valid application types: Executable, Script, MSI, MSU, ActiveX, Com, Win8App, DLL, DMG (for&nbsp;<strong>PolicyAudit</strong>&nbsp;only), PKG&nbsp;(for&nbsp;<strong>PolicyAudit</strong>&nbsp;only)</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">PolicyName</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p>Name of the policy that triggers the event</p>\n<p>Wildcards are supported</p>\n<p>Not relevant for&nbsp;<strong>ApplicationEvents</strong></p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p>Wildcards:</p>\n<ul>\n<li value=\"1\">\"xxx xxx\" - filters the exact value between the quotes</li>\n<li value=\"2\">xxx xxx - filters anything that contains the string</li>\n<li value=\"3\">*xxx xxx* - filters anything that contains the string between the *</li>\n<li value=\"4\">xxx* - filters all strings that start with the value before the *</li>\n<li value=\"5\">*xxx - filters all strings that end with the value after the *</li>\n</ul>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-5\">Event Type</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Category</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\n<p>Event Type</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">ThreatDetection</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<ul>\n<li value=\"1\">Attack</li>\n<li value=\"2\">SuspiciousActivity</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">ApplicationEvents</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<ul>\n<li value=\"1\">ElevationRequest</li>\n<li value=\"2\">Trust</li>\n<li value=\"3\">Installation</li>\n<li value=\"4\">Launch</li>\n<li value=\"5\">ManualRequest</li>\n<li value=\"6\">Block</li>\n<li value=\"7\">Access</li>\n<li value=\"8\">Ransomware</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">PolicyAudit</p>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\n<ul>\n<li value=\"1\">Trust</li>\n<li value=\"2\">Installation</li>\n<li value=\"3\">Launch</li>\n<li value=\"4\">Block</li>\n<li value=\"5\">Access</li>\n<li value=\"6\">StartElevated</li>\n<li value=\"7\">Computer</li>\n</ul>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-6\">Output</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Parameter</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p>Type</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Description</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\n<p class=\"TableText\">Category</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>TotalCount</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">The total number of retrieved events per category</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">All</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>FilteredCount</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>The number of retrieved events per category that matches the required filter</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>All</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>FileQualifier</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Unique file identifier</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>All</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>EventName</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Event display name</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>All</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Hash</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>SHA1 of the application that triggered the event</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>All</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Publisher</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Digital signature of the application that triggered the event (if applicable)</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>All</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>TotalEvents</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Number of events in the given time period</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>All</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">ApplicationType</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Type of application that triggers the event</p>\n<p>Valid application types: Executable, Script, MSI, MSU, ActiveX, Com, Win8App, DLL, DMG (for&nbsp;<strong>PolicyAudit</strong>&nbsp;only), PKG&nbsp;(for&nbsp;<strong>PolicyAudit</strong>&nbsp;only)</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<ul>\n<li value=\"1\">PolicyAudit</li>\n<li value=\"2\">ApplicationEvents</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">EventType</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Event type</p>\n<p class=\"TableText\">For the list of event types, see the Event Type table</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>All</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>LastEventSourceType</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Origin type where the file that triggered the last event was acquired</p>\n<p class=\"TableText\">Valid values:</p>\n<ul>\n<li value=\"1\">Unknown</li>\n<li value=\"2\">OldApplication</li>\n<li value=\"3\">Internet</li>\n<li value=\"4\">Updater</li>\n<li value=\"5\">NetworkShare</li>\n<li value=\"6\">RemovableDrive</li>\n<li value=\"7\">CDRom</li>\n<li value=\"8\">Windows</li>\n<li value=\"9\">LocalDisk</li>\n<li value=\"10\">EPM</li>\n<li value=\"11\">LocalShare</li>\n<li value=\"12\">Email</li>\n<li value=\"13\">DeveloperApp</li>\n</ul>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<ul>\n<li value=\"1\">PolicyAudit</li>\n<li value=\"2\">ApplicationEvents</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>LastEventSourceName</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Point of origin where the file that triggered the last event was acquired</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<ul>\n<li value=\"1\">PolicyAudit</li>\n<li value=\"2\">ApplicationEvents</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>LastEventPreHistorySourceType</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">String</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Source type of the origin where the file that triggered the last event was acquired</p>\n<p class=\"TableText\">Valid values:</p>\n<ul>\n<li value=\"1\">Unknown</li>\n<li value=\"2\">OldApplication</li>\n<li value=\"3\">Internet</li>\n<li value=\"4\">Updater</li>\n<li value=\"5\">NetworkShare</li>\n<li value=\"6\">RemovableDrive</li>\n<li value=\"7\">CDRom</li>\n<li value=\"8\">Windows</li>\n<li value=\"9\">LocalDisk</li>\n<li value=\"10\">EPM</li>\n<li value=\"11\">LocalShare</li>\n<li value=\"12\">Email</li>\n<li value=\"13\">DeveloperApp</li>\n</ul>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<ul>\n<li value=\"1\">PolicyAudit</li>\n<li value=\"2\">ApplicationEvents</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>LastEventPreHistorySourceName</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">String</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Source of the origin where the file that triggered the last event was acquired</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<ul>\n<li value=\"1\">PolicyAudit</li>\n<li value=\"2\">ApplicationEvents</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>LastEventPackageName</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">String</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Installation package or executable that created the file that triggered the last event</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<ul>\n<li value=\"1\">PolicyAudit</li>\n<li value=\"2\">ApplicationEvents</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>LastEventDate</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Date</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Last Event Date</p>\n<p>ISO-8601 to format dates and UTC time zone - YYYY-MM-DDThh:mm:ssZ</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">All</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>LastEventUserName</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>User who triggered the last event</p>\n<p>Not available for Threat Detection events</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">All</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>LastEventComputer</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Computer where the last event was triggered</p>\n<p>Not available for Threat Detection events</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">All</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>LastEventID</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Unique event identifier</p>\n<p>Not available for Threat Detection events</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">All</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>PolicyName</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Policy that triggered the event</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<ul>\n<li value=\"1\">PolicyAudit</li>\n<li value=\"2\">ThreatDetection</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>IsMalware</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Boolean</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Indicates whether the file is malware, according to the VirusTotal check</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<ul>\n<li value=\"1\">PolicyAudit</li>\n<li value=\"2\">ApplicationEvents</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>ThreatDetectionAction</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Block or Detect action taken by EPM when the event occurred</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">ThreatDetection</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>FileName</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Name of the file that triggered the event</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">ThreatDetection</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>AffectedComputers</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number of computers affected by the event</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">ThreatDetection</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>AffectedUsers</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number of users affected by the event</p>\n<p class=\"TableText\">Not available for Threat Detection events</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">ThreatDetection</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p>ExposedUsers</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">Number of exposed users affected by the event</p>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">ThreatDetection</td>\n</tr>\n</tbody>\n</table>\n<p class=\"Spacer\">&nbsp;</p>\n<table class=\"TableStyle-AdmonCode\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-AdmonCode-Column-Icon\" /><col class=\"TableStyle-AdmonCode-Column-Text\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-AdmonCode-Body-Body1\">\n<td class=\"TableStyle-AdmonCode-BodyB-Icon-Body1\">&nbsp;</td>\n<td class=\"TableStyle-AdmonCode-BodyA-Text-Body1\">{&nbsp;<br />&nbsp;\"Events\": [&nbsp;<br />&nbsp;&nbsp;{&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"TotalEvents\": number,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"FileQualifier\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"EventType\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"EventName\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"ApplicationType\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"Hash\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"Publisher\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"LastEventSourceType\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"LastEventSourceName\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"LastEventPreHistorySourceType\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"LastEventPreHistorySourceName\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"LastEventPackageName\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"LastEventDate\": \"date/time\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"LastEventUserName\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"LastEventComputer\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"IsMalware\": boolean,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"LastEventID\": \"string\"&nbsp;<br />&nbsp;&nbsp;}&nbsp;<br />&nbsp;],&nbsp;<br />&nbsp;\"TotalCount\": number,&nbsp;<br />&nbsp;\"FilteredCount\": number&nbsp;<br />}</td>\n</tr>\n</tbody>\n</dl>\n</table>",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "106344ee-e6f8-4ce8-a705-bffec84ae590",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "bae5a0bc-7faa-4c62-a4eb-521dbdf572ee",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Get raw events",
+			"item": [
+				{
+					"name": "Get raw events example",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b853e10-ee5b-404a-a811-59dd41eeb45b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{Address}}/EPM/API/sets/{{SetID}}/Events/ApplicationEvents?EventQualifier=-1017619164156729424",
+							"protocol": "https",
+							"host": [
+								"{{Address}}"
+							],
+							"path": [
+								"EPM",
+								"API",
+								"sets",
+								"{{SetID}}",
+								"Events",
+								"ApplicationEvents"
+							],
+							"query": [
+								{
+									"key": "EventQualifier",
+									"value": "-1017619164156729424"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get raw events example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "basic cSaxamO4cLjD0bI4Wf1vmtnDae8ERX2iMfmrHrwkI4UZtRgTCHj7MnnykkWR52pkf3IUyxRC0WX732pSP5mRrkT%2fne0%2bUltQaMJwzxv%2bp8ECYfTfJvMc5755ytnE4T%2fc3Esqgm1rG5dQqHAyp1m1Hrcr9aciqnh1kSc%2b9FsUcZeGD7VK6k2tOcxhXXgAyd7gPauBEF89%2fz%2fInRLfmMyIxLNDPF5PXII4AL8dm37WNA5uQPFu5JqHsLW7bM%2fjS3jqw1rcqo8DODR4ns2nWtZ%2bQGQYLM%2fDxXeMsnPUPywBQ1KexIIpYAWceVi3NOdc%2b1Y4RdpiwNoTGH21VfMf%2fMYGPEPw1cPiGTohoGQBHXLahiDyRgKcjg5hBPOICx4nZZhl2PAgbagc%2bkzK7MpPVxBlIAn1%2feVU3cgDWMvNU5O3m749R0%2bHqP%2f02terH5kW%2b5ezhzDNF4FgzZ642j3ywd%2bCIyWMPfLlMCIvElQb9wZd7g6crMvXHpmMp4ZOix53Btrzcc81nolPG1uGTDXk8LWcaVub76FYveW4nom8R9KWT8DW89Bu4qfT02pns8jRn3x4MjUjtMOyfVMNON%2fVQEf0JIVTDVjLF5fIMPTs%2bu6%2brWVUJzTRokAJwcKdmio2kI9uRngpFNV51PPfOZa%2fzpqK0%2bEOPxmDm4ovXtiRJLPoSwHTrgIQjvVIK3EG2aEg1vlrJukxMj5A5oVmhK86GL1Z%2fOewPBOvJI2%2fHv4GEBK2IcA1rc%2b0%2fyIeGQC1ZFDDJn4lP6yaLDRTqItB%2fHaRKeylDFl1%2ff8X08LZrCOOYnk5HKM7umZf6VvaJLPUmoitpUYfV%2bIQZzixyuT9dYddqHz4quIQAjniGx%2fzXPQNmSZmPg45jrMGKHh2gtZBK0%2flLbI4jEdB%2fB4vsEKi45J6K1IaSwk%2bena7KTeAAipxrTjzs%2bfbg%2bVoVaJwMGXCrcZsWsJqEEWricQRqpxLpbrovq1JP3Z4P5w4oWIY74GoKX%2bpBW4qVIP0MkWnRa%2bEUGFRWBDdTgtHnLkn5vru4X1mzd3OyBw1H8nl0i1fh%2b2%2b0SYSBppAelYH3X8tSv14U%2bbspeeCeZdZehUqGjflBpjyf1B4MDFjNbdO50gIcz%2bI86NBa9bkWnTo%2fwexCLewt056bW%2bsp9fGo7UHiFHSRNAMMQTmeoTJVpfgOWOmOJblWktBeTQPKoLRI95RLi4%2ffJbXucpipgvp530mb%2f0V3106mkKIvDZH1yapfKU74RQGYgZMQJP6FU%2bjdAsNyv%2fjklIm%2fn7laV8NN3xEWITPSH7q67BUhuwwFW1uPxxbgcEx9quAxO38kx3LUnCnpQBsPBRYgKzbaOMc455kKWDIDpCU9gDLG16BPUELRNZHD5BJzumXRN4JD9xWbpysQmmXUeiIyQf84HV0YX%2fdYxLaNj0iqE9tBgniCi1odpfdQUAuma%2b%2blTitkkUYrKQIYFsJIUdv1wkj5sO%2b6Jp0Tp9PW3DNVZwhNwNlY0gXt%2fECMt3B8SVOXHvr1eU2%2fkZS0bnRzShhjyVWvLoWXjv%2f%2fzL%2bTQglPfPOFKhxepKe2qxr3PjPcVmOlP7olkAYvGh4CxtV0RChIoYifR11IXpje9WrL7v5YJQLgH8qnMyG95Fe"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://epmsvr.cybearkdemo.com/EPM/API/sets/b4d81800-645d-4a9d-82eb-b9a3beaa7110/Events/ApplicationEvents/-1017619164156729424",
+									"protocol": "https",
+									"host": [
+										"epmsvr",
+										"cybearkdemo",
+										"com"
+									],
+									"path": [
+										"EPM",
+										"API",
+										"sets",
+										"b4d81800-645d-4a9d-82eb-b9a3beaa7110",
+										"Events",
+										"ApplicationEvents",
+										"-1017619164156729424"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-UA-Compatible",
+									"value": "IE=edge"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2019 18:38:49 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "536"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Events\": [\n        {\n            \"EventId\": \"112535\",\n            \"Computer\": \"WIN10LAB\",\n            \"User\": \"cyberarkdemo\\\\john\",\n            \"UserIsAdmin\": false,\n            \"TimeFirst\": \"2019-03-17T18:07:50.98\",\n            \"TimeLast\": \"2019-03-17T18:07:50.98\",\n            \"EventType\": \"ElevationRequest\",\n            \"AgentEventCount\": 1,\n            \"Justification\": \"I need this\",\n            \"SourceType\": \"Internet\",\n            \"SourceName\": \"https://dl1.filehippo.com/494b5a35d6c549e28dcf7a4fe963453a/dfsetup222.exe?ttl=1546644722&token=f38dde7a6d6293912ffc44855a215ed3 (Google Chrome)\",\n            \"AccessAction\": \"\",\n            \"AccessTargetType\": \"\",\n            \"AccessTargetName\": \"\"\n        }\n    ],\n    \"TotalCount\": 15,\n    \"FilteredCount\": 1\n}"
+						}
+					]
+				}
+			],
+			"description": "<dl>\n<div class=\"mtp-wrapper\">\n<p class=\"mtp-heading\">In this topic:</p>\n<ul class=\"mtp-items\">\n<li>URL</li>\n<li>Resource information</li>\n<li>URL parameters</li>\n<li>Header parameters</li>\n<li>Query parameters</li>\n<li>Event Type</li>\n<li>Output<br /><br /><br /></li>\n</ul>\n</div>\n<p class=\"keepWithNext\">This method enables the user to retrieve raw events from EPM according to a predefined filter.</p>\n<h2 id=\"h2-item-0\">URL</h2>\n<p class=\"TableText\">Make sure there are no spaces in the URL.</p>\n<table class=\"TableStyle-AdmonCode\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-AdmonCode-Column-Icon\" /><col class=\"TableStyle-AdmonCode-Column-Text\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-AdmonCode-Body-Body1\">\n<td class=\"TableStyle-AdmonCode-BodyB-Icon-Body1\">\n<p class=\"TableText\">&nbsp;</p>\n</td>\n<td class=\"TableStyle-AdmonCode-BodyA-Text-Body1\">\n<p class=\"TableText\">https://&lt;EPM_Server&gt;/EPM/API/&lt;Version&gt;/Sets/&lt;setId&gt;/Events/&lt;Category&gt;/&lt;FileQualifier&gt;</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-1\">Resource information</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Alternate\">\n<p class=\"TableText\">HTTP&nbsp;method</p>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Alternate\">\n<p class=\"TableText\">GET</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-2\">URL parameters</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Parameter</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p>Type</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Description</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Values</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\n<p class=\"TableText\">Mandatory</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">EPM_Server</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">EPM&nbsp;Server</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">EPM&nbsp;Server name</p>\n<p class=\"TableText\">(not dispatcher server name)</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Yes</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Version</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">API&nbsp;version</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Default value - Latest version</p>\n<p class=\"TableText\">Format is x.x.x.x (for example, 10.7.0.1)</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">SetID</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">ID of a set that the user has permission to view, generated in the Get Sets list&nbsp;API</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>&nbsp;</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Yes</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Category</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Event category</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<ul>\n<li value=\"1\">ApplicationEvents</li>\n<li value=\"2\">PolicyAudit</li>\n<li value=\"3\">ThreatDetection</li>\n</ul>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Yes</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">FileQualifier</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p>Unique file ID generated in the&nbsp;Get aggregated events&nbsp;API</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">&nbsp;</p>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\n<p class=\"TableText\">Yes</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-3\">Header parameters</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Parameter</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p>Type</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Description</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Values</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\n<p class=\"TableText\">Mandatory</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Authorization</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Token generated in the EPM&nbsp;authentication API</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>use&nbsp;<strong>basic &lt;Token&gt;</strong></p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Yes</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p>VFUser</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">Token generated in the Windows authentication&nbsp;API</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p>use&nbsp;<strong>&lt;Token&gt;</strong></p>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\n<p class=\"TableText\">Yes</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-4\">Query parameters</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Parameter</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p>Type</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Description</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Values</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\n<p class=\"TableText\">Mandatory</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Offset</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number of events to skip</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Default value - 0</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Limit</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Maximum number of events to return (up to 100)</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>&nbsp;</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">EventType</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Event type</p>\n<p class=\"TableText\">Value with&nbsp;<strong>All</strong>&nbsp;or with a list of event types separated by commas</p>\n<p class=\"TableText\">For the list of event types, see the Event Type table</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>All</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">DateFrom</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Date</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Only show events since the given date</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>ISO-8601 to format dates and UTC time zone - YYYY-MM-DDThh:mm:ssZ</p>\n<p>If&nbsp;<strong>DateFrom</strong>&nbsp;and&nbsp;<strong>DateTo</strong>&nbsp;are not valued, only events from the last day are returned</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">DateTo</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Date</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Only show events until the given date</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>ISO-8601 to format dates and UTC time zone - YYYY-MM-DDThh:mm:ssZ</p>\n<p>If&nbsp;<strong>DateFrom</strong>&nbsp;and&nbsp;<strong>DateTo</strong>&nbsp;are not valued, only events from the last day are returned</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Justification</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Determines if the event has justification details</p>\n<p>Not relevant for&nbsp;<strong>ThreatDetection</strong></p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Default value: All</p>\n<p class=\"TableText\">Valid values:&nbsp;<strong>All</strong>,&nbsp;<strong>WithJustification</strong></p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">PolicyName</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p>Name of the policy that triggers the event</p>\n<p>Wildcards are supported</p>\n<p>Not relevant for&nbsp;<strong>ApplicationEvents</strong></p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p>Wildcards:</p>\n<ul>\n<li value=\"1\">\"xxx xxx\" - filters the exact value between the quotes</li>\n<li value=\"2\">xxx xxx - filters anything that contains the string</li>\n<li value=\"3\">*xxx xxx* - filters anything that contains the string between the *</li>\n<li value=\"4\">xxx* - filters all strings that start with the value before the *</li>\n<li value=\"5\">*xxx - filters all strings that end with the value after the *</li>\n</ul>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\n<p class=\"TableText\">No</p>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-5\">Event Type</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Category</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\n<p>Event Type</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">ThreatDetection</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<ul>\n<li value=\"1\">Attack</li>\n<li value=\"2\">SuspiciousActivity</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">ApplicationEvents</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<ul>\n<li value=\"1\">ElevationRequest</li>\n<li value=\"2\">Trust</li>\n<li value=\"3\">Installation</li>\n<li value=\"4\">Launch</li>\n<li value=\"5\">ManualRequest</li>\n<li value=\"6\">Block</li>\n<li value=\"7\">Access</li>\n<li value=\"8\">Ransomware</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">PolicyAudit</p>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\n<ul>\n<li value=\"1\">Trust</li>\n<li value=\"2\">Installation</li>\n<li value=\"3\">Launch</li>\n<li value=\"4\">Block</li>\n<li value=\"5\">Access</li>\n<li value=\"6\">StartElevated</li>\n<li value=\"7\">Computer</li>\n</ul>\n</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"h2-item-6\">Output</h2>\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p class=\"TableText\">Parameter</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\n<p>Type</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\n<p class=\"TableText\">Description</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>TotalCount</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">The total number of retrieved events per category</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>FilteredCount</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>The number of retrieved events per category that matches the required filter</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>EventID</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>Unique event identifier</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Computer</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>Computer where the event was triggered</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">User</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>User who triggered the event</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>IsUserAdmin</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Boolean</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>If the user who triggered the event is a local administrator</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>TimeFirst</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>DateTime</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>First time the event was triggered. If&nbsp;<strong>AgentEventCount</strong>&nbsp;=1,&nbsp;<strong>TimeFirst</strong>&nbsp;will be identical to&nbsp;<strong>TimeLast</strong></p>\n<p>ISO-8601 to format dates and UTC time zone - YYYY-MM-DDThh:mm:ssZ</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>TimeLast</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>DateTime</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>Last time the event was triggered. If&nbsp;<strong>AgentEventCount</strong>&nbsp;=1,&nbsp;<strong>TimeFirst</strong>&nbsp;will be identical to&nbsp;<strong>TimeLast</strong></p>\n<p>ISO-8601 to format dates and UTC time zone - YYYY-MM-DDThh:mm:ssZ</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">EventType</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Event type</p>\n<p class=\"TableText\">For the list of event types, see the Event Type table</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>AgentEventCount</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">Number</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>Number of times the event was triggered</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>Justification</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Justification provided by the user when the event was triggered</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>SourceType</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">String</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Type of the origin where the file that triggered the event was acquired</p>\n<p class=\"TableText\">Valid values:</p>\n<ul>\n<li value=\"1\">Unknown</li>\n<li value=\"2\">OldApplication</li>\n<li value=\"3\">Internet</li>\n<li value=\"4\">Updater</li>\n<li value=\"5\">NetworkShare</li>\n<li value=\"6\">RemovableDrive</li>\n<li value=\"7\">CDRom</li>\n<li value=\"8\">Windows</li>\n<li value=\"9\">LocalDisk</li>\n<li value=\"10\">EPM</li>\n<li value=\"11\">LocalShare</li>\n<li value=\"12\">Email</li>\n<li value=\"13\">DeveloperApp</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>SourceName</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">String</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Source of the origin where the file that triggered the last event was acquired</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>AccessAction</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">String</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">If the restrict event action is allow or restrict</p>\n<p>Relevant for Restrict events only</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>AccessTargetType</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Type of the accessed resource</p>\n<p>Relevant for Restrict events only</p>\n<p class=\"TableText\">Valid values:</p>\n<ul>\n<li value=\"1\">Registry</li>\n<li value=\"2\">File</li>\n<li value=\"3\">ProcessMemory</li>\n<li value=\"4\">NetworkShare</li>\n<li value=\"5\">Internet</li>\n<li value=\"6\">Intranet</li>\n</ul>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>AccessTargetName</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p>Name of the accessed resource</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p>PolicyName</p>\n</td>\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\n<p class=\"TableText\">Policy that triggered the event</p>\n</td>\n</tr>\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p>ThreatDetectionAction</p>\n</td>\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\n<p class=\"TableText\">String</p>\n</td>\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\n<p class=\"TableText\">Block or Detect action taken by EPM when the event occurred</p>\n</td>\n</tr>\n</tbody>\n</table>\n<p class=\"Spacer\">&nbsp;</p>\n<table class=\"TableStyle-AdmonCode\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-AdmonCode-Column-Icon\" /><col class=\"TableStyle-AdmonCode-Column-Text\" /></colgroup>\n<tbody>\n<tr class=\"TableStyle-AdmonCode-Body-Body1\">\n<td class=\"TableStyle-AdmonCode-BodyB-Icon-Body1\">&nbsp;</td>\n<td class=\"TableStyle-AdmonCode-BodyA-Text-Body1\">{&nbsp;<br />&nbsp;\"Events\": [&nbsp;<br />&nbsp;&nbsp;{&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"EventId\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"Computer\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"User\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"UserIsAdmin\": boolean,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"TimeFirst\": \"date/time\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"TimeLast\": \"date/time\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"EventType\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"AgentEventCount\": number,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"Justification\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"SourceType\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"SourceName\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"AccessAction\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"AccessTargetType\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"AccessTargetName\": \"string\",&nbsp;<br />&nbsp;&nbsp;}&nbsp;<br />&nbsp;],&nbsp;<br />&nbsp;\"TotalCount\": number,&nbsp;<br />&nbsp;\"FilteredCount\": number&nbsp;<br />}</td>\n</tr>\n</tbody>\n</table>\n</dl>",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "65088da9-3d34-447b-8c21-2f3d329af778",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "eae48780-1ae4-4fe5-971d-297dd264a644",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Get raw event details",
+			"item": [
+				{
+					"name": "Raw event details example",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7852f7b9-d30c-46a3-a77f-262a90231ae6",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{Address}}/EPM/API/sets/{{SetID}}/Events/ApplicationEvents/Raw/112535",
+							"protocol": "https",
+							"host": [
+								"{{Address}}"
+							],
+							"path": [
+								"EPM",
+								"API",
+								"sets",
+								"{{SetID}}",
+								"Events",
+								"ApplicationEvents",
+								"Raw",
+								"112535"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Raw event details example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "basic cSaxamO4cLjD0bI4Wf1vmtnDae8ERX2iMfmrHrwkI4UZtRgTCHj7MnnykkWR52pkf3IUyxRC0WX732pSP5mRrkT%2fne0%2bUltQaMJwzxv%2bp8ECYfTfJvMc5755ytnE4T%2fc3Esqgm1rG5dQqHAyp1m1Hrcr9aciqnh1kSc%2b9FsUcZeGD7VK6k2tOcxhXXgAyd7gPauBEF89%2fz%2fInRLfmMyIxLNDPF5PXII4AL8dm37WNA5uQPFu5JqHsLW7bM%2fjS3jqw1rcqo8DODR4ns2nWtZ%2bQGQYLM%2fDxXeMsnPUPywBQ1KexIIpYAWceVi3NOdc%2b1Y4RdpiwNoTGH0VLrCun31BnrQUqLaf9Af286XgQ60AHG3xJl7tTq7nBmnvdg3CR4Tjt5I7EBCVZ3nx3He4Q%2fhFg%2fmBV%2fIkv41Hks6WXA%2f%2f8dVxY0CdDU7d5VfxRyhyquFRoG3OxJpjXuPnEb7z6md8ah4gIkjlmtUJ8cLOW7oU5Ul9VhvHVBl%2fz4yHhcZ7n%2bNwIOovyvKEblur%2fRTDEXNPpQ3HHBbbjaiAvIY%2bMtkd2BTW%2fluBfpWfZO72%2fihKrpu%2femNJPWI%2f0%2bYCQrHL3wIDWKpBN2y4rDY2V3rI4IjzeRYw4pA1XyUFVYYG7BE25AHauuTBXilzhJHDNKi4JwwyrUKA1kUIGc0c%2b6SKDL3YffMxf8XGyKBAtLkk8mq1JRDaAqwryp94WhLTMGKEdaig5zBazykD28wp54wbFxm9V5cQnwNf8D4PWFZtH%2f3IyrMgp4Iq2DZmaq7J9K3Izp0U6DpXNb0KZgb9w04grnDqehWdHpDpvugsAxkzPQtX8G6y5FzwQ0vTRwxdOFjtTOO38ikSTJQmog8UBFDJq8dcycdCk8sIZulE0jxAwaGldBfF%2bkvevavdFHaDuQAOcmaTFRYKuNrWL53Yvb6YrDZVmGuUnJ8cxWs8O%2fEHkzCBWJSg0EsuIc2A7SNNYvBPU0VXwmnyGMHslgyzaaXgcLIJKthOXMVWsh1SNzZ%2fbhelxpzyfXADjrjDdXAlJAjlickrtHrGwVlLwhQf%2fbIso7yZyNwauJj3ra%2b0ZPoZ783fdKroigXi7lUoviTxdcPC32SBjX6SwtzqBnDhfff7XAACG0FB70vkKAgFfMyXlBw87V5PEZvHALfJke7VrtJV5fazAqI5zeOP%2fZhjy9DciDHSjWbU%2fYZO6ylWnVvDb1ogVZX29prWxusgsDLizmj%2fsgLtKqb%2fNApGr3KdPr9OtIlqYNRUDwTCO4cdnNP2OTf82P1LmlKLriVo7HDWPJggol4Gl1jXqMQCaQmIZd8ACaLHuuLipe4jxhoAsSTQuLJ6va7FgPUH3pe3izX%2bwfxVoHX1U2M8vscF5hG%2f8PYbnZcXYD3XFlbf4r67Ghfb%2brbtox4M7rDh%2bm1EMTJzsv0IRmaDFbTIi4o0VpYJSxaiwvBqSIepJBbJnTVyXEUFigTG5CBDOd8lKwdUgqEgI7ISypEIP01aaWPWKc34iQkD8iOyBGTrzzWMKvf4gcwEux8wtQjqK%2bTR%2brbJijD7d0zPk7VNKGJnl4e%2fx3Vta8n6BlSK4ojWaE%2b9gepUZDVymrAxq7ytoTPa9EnQrIV5TZVdxlKEypuBMAjzJC3I"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://epmsvr.cyberarkdemo.com/EPM/API/sets/b4d81800-645d-4a9d-82eb-b9a3beaa7110/Events/ApplicationEvents/Raw/112535",
+									"protocol": "https",
+									"host": [
+										"epmsvr",
+										"cyberarkdemo",
+										"com"
+									],
+									"path": [
+										"EPM",
+										"API",
+										"sets",
+										"b4d81800-645d-4a9d-82eb-b9a3beaa7110",
+										"Events",
+										"ApplicationEvents",
+										"Raw",
+										"112535"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-UA-Compatible",
+									"value": "IE=edge"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Mar 2019 19:30:04 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "986"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Computer\": \"WIN10LAB\",\n    \"FileQualifier\": \"-1017619164156729424\",\n    \"FileName\": \"dfsetup222.exe\",\n    \"Publisher\": \"Piriform Ltd\",\n    \"Hash\": \"SHA1##B0E0F327809A767D6B524E2FA325DD35B678AF44\",\n    \"FilePath\": \"c:\\\\users\\\\john\\\\desktop\\\\demo apps\\\\dfsetup222.exe\",\n    \"Company\": \"Piriform Ltd\",\n    \"FileDescription\": \"Defraggler Installer\",\n    \"ProductName\": \"Defraggler\",\n    \"ProductVersion\": \"2.22.33.995\",\n    \"FileVersion\": \"2.22.33.995\",\n    \"SourceType\": \"Internet\",\n    \"SourceName\": \"https://dl1.filehippo.com/494b5a35d6c549e28dcf7a4fe963453a/dfsetup222.exe?ttl=1546644722&token=f38dde7a6d6293912ffc44855a215ed3 (Google Chrome)\",\n    \"PreHistorySourceType\": \"Unknown\",\n    \"PreHistorySourceName\": \"\",\n    \"FileSize\": 6404096,\n    \"Package\": \"Defraggler Installer\",\n    \"ModificationTime\": \"2019-01-04T19:31:37Z\",\n    \"User\": \"cyberarkdemo\\\\john\",\n    \"UserIsAdmin\": false,\n    \"TimeFirst\": \"2019-03-17T18:07:50Z\",\n    \"TimeLast\": \"2019-03-17T18:07:50Z\",\n    \"EventType\": \"ElevationRequest\",\n    \"AgentEventCount\": 1,\n    \"Justification\": \"I need this\",\n    \"AccessAction\": \"\",\n    \"AccessTargetType\": \"\",\n    \"AccessTargetName\": \"\"\n}"
+						}
+					]
+				}
+			],
+			"description": "<dl>\r\n<div class=\"mtp-wrapper\">\r\n<p class=\"mtp-heading\">In this topic:</p>\r\n<ul class=\"mtp-items\">\r\n<li>URL</li>\r\n<li>Resource information</li>\r\n<li>URL parameters</li>\r\n<li>Header parameters</li>\r\n<li>Output</li>\r\n<li>Event Type</li>\r\n</ul>\r\n</div>\r\n<p class=\"keepWithNext\">This method enables the user to retrieve raw events file data from EPM according to a predefined filter.</p>\r\n<h2 id=\"h2-item-0\">URL</h2>\r\n<p class=\"TableText\">Make sure there are no spaces in the URL.</p>\r\n<table class=\"TableStyle-AdmonCode\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-AdmonCode-Column-Icon\" /><col class=\"TableStyle-AdmonCode-Column-Text\" /></colgroup>\r\n<tbody>\r\n<tr class=\"TableStyle-AdmonCode-Body-Body1\">\r\n<td class=\"TableStyle-AdmonCode-BodyB-Icon-Body1\">\r\n<p class=\"TableText\">&nbsp;</p>\r\n</td>\r\n<td class=\"TableStyle-AdmonCode-BodyA-Text-Body1\">\r\n<p class=\"TableText\">https://&lt;EPM_Server&gt;/EPM/API/&lt;Version&gt;/Sets/&lt;setId&gt;/Events/&lt;Category&gt;/Raw/&lt;EventID&gt;</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<h2 id=\"h2-item-1\">Resource information</h2>\r\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\r\n<tbody>\r\n<tr class=\"TableStyle-Rows-Body-Alternate\">\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Alternate\">\r\n<p class=\"TableText\">HTTP&nbsp;method</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyA-Column1-Alternate\">\r\n<p class=\"TableText\">GET</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<h2 id=\"h2-item-2\">URL parameters</h2>\r\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\r\n<tbody>\r\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Parameter</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p>Type</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Description</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Values</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\r\n<p class=\"TableText\">Mandatory</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">EPM_Server</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">EPM&nbsp;Server</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">EPM&nbsp;Server name</p>\r\n<p class=\"TableText\">(not dispatcher server name)</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<p class=\"TableText\">Yes</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Version</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">API&nbsp;version</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Default value - Latest version</p>\r\n<p class=\"TableText\">Format is x.x.x.x (for example, 10.7.0.1)</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<p class=\"TableText\">No</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">SetID</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">ID of a set that the user has permission to view, generated in the Get Sets list&nbsp;API</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>&nbsp;</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<p class=\"TableText\">Yes</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Category</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Event category</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<ul>\r\n<li value=\"1\">ApplicationEvents</li>\r\n<li value=\"2\">PolicyAudit</li>\r\n<li value=\"3\">ThreatDetection</li>\r\n</ul>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<p class=\"TableText\">Yes</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p>EventId</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p>EventID generated in the&nbsp;Get raw events&nbsp;API or LastEventID generated in the Get aggregated events&nbsp;API</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">&nbsp;</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\r\n<p class=\"TableText\">Yes</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<h2 id=\"h2-item-3\">Header parameters</h2>\r\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\r\n<tbody>\r\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Parameter</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p>Type</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Description</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Values</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\r\n<p class=\"TableText\">Mandatory</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Authorization</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Token generated in the&nbsp;EPM&nbsp;authentication&nbsp;API</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>use&nbsp;<strong>basic &lt;Token&gt;</strong></p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<p class=\"TableText\">Yes</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p>VFUser</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">Token generated in the&nbsp;Windows authentication&nbsp;API</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p>use&nbsp;<strong>&lt;Token&gt;</strong></p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\r\n<p class=\"TableText\">Yes</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<h2 id=\"h2-item-4\">Output</h2>\r\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\r\n<tbody>\r\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Parameter</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p>Type</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Description</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\r\n<p class=\"TableText\">Category</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Computer</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Computer where the event was triggered</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<p class=\"TableText\">All</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">FileQualifier</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Unique file identifier</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">All</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>FileName</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Name of the file that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">All</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Publisher</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Digital signature of the application that triggered the event (if applicable)</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<p class=\"TableText\">All</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Hash</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>SHA1 of the application that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<p class=\"TableText\">All</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>FilePath</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Path of the file that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<p class=\"TableText\">All</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Company</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Company name of the file that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<p class=\"TableText\">All</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>FileDescription</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>File description of the file that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<p class=\"TableText\">All</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>ProductName</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">String</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Product name of the file that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<p class=\"TableText\">All</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>ProductVersion</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">String</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Product version of the file that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<p class=\"TableText\">All</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>SourceType</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">String</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Type of the origin where the file that triggered the last event was acquired</p>\r\n<p class=\"TableText\">Valid values:</p>\r\n<ul>\r\n<li value=\"1\">Unknown</li>\r\n<li value=\"2\">OldApplication</li>\r\n<li value=\"3\">Internet</li>\r\n<li value=\"4\">Updater</li>\r\n<li value=\"5\">NetworkShare</li>\r\n<li value=\"6\">RemovableDrive</li>\r\n<li value=\"7\">CDRom</li>\r\n<li value=\"8\">Windows</li>\r\n<li value=\"9\">LocalDisk</li>\r\n<li value=\"10\">EPM</li>\r\n<li value=\"11\">LocalShare</li>\r\n<li value=\"12\">Email</li>\r\n<li value=\"13\">DeveloperApp</li>\r\n</ul>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<ul>\r\n<li value=\"1\">PolicyAudit</li>\r\n<li value=\"2\">ApplicationEvents</li>\r\n</ul>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>SourceName</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">Source of the origin where the file that triggered the event was acquired</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<ul>\r\n<li value=\"1\">PolicyAudit</li>\r\n<li value=\"2\">ApplicationEvents</li>\r\n</ul>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">PreHistorySourceType</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Source type of the origin where the file that triggered the event was acquired</p>\r\n<p class=\"TableText\">Valid values:</p>\r\n<ul>\r\n<li value=\"1\">Unknown</li>\r\n<li value=\"2\">OldApplication</li>\r\n<li value=\"3\">Internet</li>\r\n<li value=\"4\">Updater</li>\r\n<li value=\"5\">NetworkShare</li>\r\n<li value=\"6\">RemovableDrive</li>\r\n<li value=\"7\">CDRom</li>\r\n<li value=\"8\">Windows</li>\r\n<li value=\"9\">LocalDisk</li>\r\n<li value=\"10\">EPM</li>\r\n<li value=\"11\">LocalShare</li>\r\n<li value=\"12\">Email</li>\r\n<li value=\"13\">DeveloperApp</li>\r\n</ul>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<ul>\r\n<li value=\"1\">PolicyAudit</li>\r\n<li value=\"2\">ApplicationEvents</li>\r\n</ul>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">PreHistorySourceName</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">Source name of the origin where the file that triggered the event was acquired</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<ul>\r\n<li value=\"1\">PolicyAudit</li>\r\n<li value=\"2\">ApplicationEvents</li>\r\n</ul>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">FileSize</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Number</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Size of the file that triggered the event</p>\r\n<p>-1 means that the size is unavailable</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">All</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Package</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Installation package or executable that created the file that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">All</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">FileVersion</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Version of the file that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">All</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">ModificationTime</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Date</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Last time the file that triggered the event was changed</p>\r\n<p class=\"TableText\">ISO-8601 to format dates and UTC time zone - YYYY-MM-DDThh:mm:ssZ</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">All</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">User</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">User who triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">All</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">UserIsAdmin</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Boolean</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">If the user who triggered the event is a local administrator</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<ul>\r\n<li value=\"1\">PolicyAudit</li>\r\n<li value=\"2\">ApplicationEvents</li>\r\n</ul>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>TimeFirst</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>DateTime</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>First time the event was triggered. If&nbsp;<strong>AgentEventCount</strong>&nbsp;=1,&nbsp;<strong>TimeFirst</strong>&nbsp;will be identical to&nbsp;<strong>TimeLast</strong></p>\r\n<p>ISO-8601 to format dates and UTC time zone - YYYY-MM-DDThh:mm:ssZ</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">All</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>TimeLast</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>DateTime</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Last time the event was triggered. If&nbsp;<strong>AgentEventCount</strong>&nbsp;=1,&nbsp;<strong>TimeFirst</strong>&nbsp;will be identical to&nbsp;<strong>TimeLast</strong></p>\r\n<p>ISO-8601 to format dates and UTC time zone - YYYY-MM-DDThh:mm:ssZ</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">All</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">EventType</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Event type</p>\r\n<p>For the list of event types, see the Event Type table</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">All</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">AgentEventCount</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Number</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Number of identical events that occurred during the aggregation period</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">All</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Justification</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Justification provided by the user when the event was triggered</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">All</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">AccessAction</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">If the restrict event action is allow or restrict</p>\r\n<p>Relevant for Restrict events only</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<ul>\r\n<li value=\"1\">PolicyAudit</li>\r\n<li value=\"2\">ApplicationEvents</li>\r\n</ul>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">AccessTargetType</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Type of the accessed resource</p>\r\n<p>Relevant for Restrict events only</p>\r\n<p class=\"TableText\">Valid values:</p>\r\n<ul>\r\n<li value=\"1\">Registry</li>\r\n<li value=\"2\">File</li>\r\n<li value=\"3\">ProcessMemory</li>\r\n<li value=\"4\">NetworkShare</li>\r\n<li value=\"5\">Internet</li>\r\n<li value=\"6\">Intranet</li>\r\n</ul>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<ul>\r\n<li value=\"1\">PolicyAudit</li>\r\n<li value=\"2\">ApplicationEvents</li>\r\n</ul>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>AccessTargetName</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Name of the accessed resource</p>\r\n<p class=\"TableText\">Relevant for Restrict events only</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<ul>\r\n<li value=\"1\">PolicyAudit</li>\r\n<li value=\"2\">ApplicationEvents</li>\r\n</ul>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">PolicyCategory</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Threat detection policy category that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<p class=\"TableText\">ThreatDetection</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">PolicyName</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Threat detection policy that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">ThreatDetection</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">ThreatDetectionAction</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Block or Detect action taken by EPM when the event occurred</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">ThreatDetection</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">ProcessCommandLine</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">String</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Process creation command line that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">ThreatDetection</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">ProcessCertificateIssuer</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">String</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p>Certificate issuer for the publisher of the application that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">ThreatDetection</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">SourceProcessCommandLine</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">String</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Initiating process creation command line that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">ThreatDetection</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">SourceProcessUsername</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">String</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">User name of the initiating process that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">ThreatDetection</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">SourceProcessHash</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">String</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Hash of the initiating process that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">ThreatDetection</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">SourceProcessPublisher</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">String</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Publisher of the initiating process that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">ThreatDetection</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">SourceProcessCertificateIssuer</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">String</td>\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">Certificate issuer for the publisher of the initiating process that triggered the event</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">ThreatDetection</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">ExposedUsers</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">String</td>\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">List of users exposed or protected in the attack</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">ThreatDetection</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p class=\"Spacer\">&nbsp;</p>\r\n<table class=\"TableStyle-AdmonCode\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-AdmonCode-Column-Icon\" /><col class=\"TableStyle-AdmonCode-Column-Text\" /></colgroup>\r\n<tbody>\r\n<tr class=\"TableStyle-AdmonCode-Body-Body1\">\r\n<td class=\"TableStyle-AdmonCode-BodyB-Icon-Body1\">&nbsp;</td>\r\n<td class=\"TableStyle-AdmonCode-BodyA-Text-Body1\">{&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"Computer\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"FileQualifier\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"FileName\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"Publisher\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"Hash\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"FilePath\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"Company\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"FileDescription\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"ProductName\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"ProductVersion\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"FileVersion\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"SourceType\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"SourceName\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"PreHistorySourceType\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"PreHistorySourceName\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"FileSize\": number,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"Package\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"ModificationTime\": \"date/time\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"User\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"UserIsAdmin\": boolean,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"TimeFirst\": \"date/time\"&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"TimeLast\": \"date/time\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"EventType\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"AgentEventCount\": number,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"Justification\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\"AccessAction\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"AccessTargetType\": \"string\",&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;\"AccessTargetName\": \"string\",<br />}</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<h2 id=\"h2-item-5\">Event Type</h2>\r\n<table class=\"TableStyle-Rows\" cellspacing=\"0\"><colgroup><col class=\"TableStyle-Rows-Column-Column1\" /><col class=\"TableStyle-Rows-Column-Column1\" /></colgroup>\r\n<tbody>\r\n<tr class=\"TableStyle-Rows-Body-Alternate\" data-mc-pattern=\"1\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Alternate\">\r\n<p class=\"TableText\">Category</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Alternate\">\r\n<p>Event Type</p>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">ThreatDetection</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<ul>\r\n<li value=\"1\">Attack</li>\r\n<li value=\"2\">SuspiciousActivity</li>\r\n</ul>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyE-Column1-Regular\">\r\n<p class=\"TableText\">ApplicationEvents</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyD-Column1-Regular\">\r\n<ul>\r\n<li value=\"1\">ElevationRequest</li>\r\n<li value=\"2\">Trust</li>\r\n<li value=\"3\">Installation</li>\r\n<li value=\"4\">Launch</li>\r\n<li value=\"5\">ManualRequest</li>\r\n<li value=\"6\">Block</li>\r\n<li value=\"7\">Access</li>\r\n<li value=\"8\">Ransomware</li>\r\n</ul>\r\n</td>\r\n</tr>\r\n<tr class=\"TableStyle-Rows-Body-Regular\" data-mc-pattern=\"4\">\r\n<td class=\"TableStyle-Rows-BodyB-Column1-Regular\">\r\n<p class=\"TableText\">PolicyAudit</p>\r\n</td>\r\n<td class=\"TableStyle-Rows-BodyA-Column1-Regular\">\r\n<ul>\r\n<li value=\"1\">Trust</li>\r\n<li value=\"2\">Installation</li>\r\n<li value=\"3\">Launch</li>\r\n<li value=\"4\">Block</li>\r\n<li value=\"5\">Access</li>\r\n<li value=\"6\">StartElevated</li>\r\n<li value=\"7\">Computer</li>\r\n</ul>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n</dl>",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5ee5bf10-cf63-4d8b-b421-b51b790e5d8d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b89d7fd6-9ee4-4c15-9b0d-572b0da1e5ea",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Logout",
+			"item": [
+				{
+					"name": "Logout example",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b853e10-ee5b-404a-a811-59dd41eeb45b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{Address}}/EPM/API/Auth/EPM/Logout",
+							"protocol": "https",
+							"host": [
+								"{{Address}}"
+							],
+							"path": [
+								"EPM",
+								"API",
+								"Auth",
+								"EPM",
+								"Logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ac775f51-ee1c-4508-92e4-c29300101b0b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "18df2db8-9b0c-461c-9e8a-35ba7e1fe59a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "f16ea41b-2cf0-4f61-b479-caf94d954c0f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "dbace395-b285-4fe4-be03-f16fd68a653d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "51a349ea-e552-4354-a417-861b94bcfdff",
+			"key": "DispatcherAddress",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "4598268d-c4c2-4d79-bcd9-3ee31ea048ac",
+			"key": "Address",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "0af81e44-245b-4029-b981-789fc90640fa",
+			"key": "User",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "4e112a38-ea09-4118-9dba-eb5dcd38577d",
+			"key": "Pass",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "cabaae2e-b9e6-417c-9a20-065ecf9dd248",
+			"key": "Token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "62ec110f-65a0-4b13-a8c6-d06d0a9c59af",
+			"key": "EventID",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
